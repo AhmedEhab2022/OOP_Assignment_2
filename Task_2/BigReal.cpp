@@ -52,7 +52,7 @@ BigReal BigReal::operator + (BigReal& other)
 
 }
 
-BigReal operator - (BigReal& other)
+BigReal BigReal::operator - (BigReal& other)
 {
 
 }
