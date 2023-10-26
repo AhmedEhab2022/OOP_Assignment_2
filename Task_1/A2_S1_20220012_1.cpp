@@ -33,6 +33,10 @@ int main()
             corrected_sentence += tolower(sentence[i]);
         else
             corrected_sentence += sentence[i];
+        
+        // Check for the end of the sentence
+        if (sentence[i] == '.')
+            break;
     }
     cout << "the corrected sentence\n: ";
     cout << corrected_sentence << '\n';
