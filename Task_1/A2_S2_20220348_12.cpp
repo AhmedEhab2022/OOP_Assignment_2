@@ -54,14 +54,8 @@ Phishing_Word words[30] = {
 
 int main()
 {
-  string file_name;
-  // cout << "Please enter the file name: ";
-  // cin >> file_name;
-
   // we create fstream object called file
   ifstream file;
-  // file.open(file_name + ".txt");
-  // file.open("C:\\Users\\mhnda\\Desktop\\Code\\FCAI-OOP\\Assignment-2\\OOP_Assignment_2\\Task_1\\Q12_Phishing_message.txt");
   file.open("Q12_Phishing_message.txt");
 
   // check if the file is opened successfully.
