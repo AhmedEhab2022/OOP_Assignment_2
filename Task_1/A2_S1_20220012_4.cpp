@@ -1,6 +1,6 @@
 // File: A2_S1_20220012_4.cpp
 // Purpose: Solve problem 4
-// Author: Ahmed Ehab
+// Author: Ahmed Ehab Shehata Ali
 // Section: S1
 // ID: 20220012
 // TA: Maya Ahmed Kamal
