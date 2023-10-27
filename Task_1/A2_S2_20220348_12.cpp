@@ -14,34 +14,34 @@ using namespace std;
 
 struct Phishing_Word
 {
-  string word;
-  int points;
+  string content;
+  const int points;
   long occurrences;
 };
 
 Phishing_Word words[30] = {
-    {"amazon", 3, 0},
-    {"apple", 3, 0},
-    {"bank of america", 3, 0},
-    {"chase", 1, 0},
-    {"citibank", 2, 0},
+    {"Amazon", 3, 0},
+    {"Apple", 3, 0},
+    {"Bank of america", 3, 0},
+    {"Chase", 1, 0},
+    {"Citibank", 2, 0},
     {"eBay", 3, 0},
-    {"facebook", 3, 0},
-    {"federal bureau of investication", 3, 0},
-    {"google", 3, 0},
-    {"internal revenue service", 2, 0},
-    {"linkedIn", 2, 0},
-    {"microsoft", 3, 0},
-    {"netflix", 3, 0},
-    {"payPal", 3, 0},
-    {"social sevurity administration", 3, 0},
-    {"twitter", 3, 0},
-    {"wells fargo", 1, 0},
-    {"american express", 2, 0},
-    {"acpital one", 2, 0},
-    {"discover", 1, 0},
-    {"mastercard", 3, 0},
-    {"visa", 3, 0},
+    {"Facebook", 3, 0},
+    {"Federal Bureau of Investication", 3, 0},
+    {"Google", 3, 0},
+    {"Internal Revenue Service", 2, 0},
+    {"LinkedIn", 2, 0},
+    {"Microsoft", 3, 0},
+    {"Netflix", 3, 0},
+    {"PayPal", 3, 0},
+    {"Social Sevurity Administration", 3, 0},
+    {"Twitter", 3, 0},
+    {"Wells Fargo", 1, 0},
+    {"American Express", 2, 0},
+    {"Acpital One", 2, 0},
+    {"Discover", 1, 0},
+    {"Mastercard", 3, 0},
+    {"Visa", 3, 0},
     {"account suspended", 3, 0},
     {"alert!", 2, 0},
     {"change your password", 3, 0},
@@ -84,42 +84,33 @@ int main()
 
   // we read the content from the string stream buffer
   // into the string content.
-  string content;
-  content = buffer.str();
+  string msg_content;
+  msg_content = buffer.str();
 
-  cout << content;
+  long total_points = 0;
+
+  cout << "\nThe occurrence of each word and phrase is:\n";
+  for (auto word : words)
+  {
+    // check if the massage is bigger than the word.
+    if (msg_content.size() >= word.content.size())
+    {
+      // loop through the massage and check for each word.
+      for (int i = 0; i < msg_content.size(); i++)
+      {
+        // if it exist we increase the occurrence and add the 
+        // word points to the total.
+        if (word.content == msg_content.substr(i, word.content.size()))
+        {
+          word.occurrences += 1;
+          total_points += word.points;
+        }
+      }
+    }
+    // output the occurrence of each word or phrase.
+    cout << word.content << ": " << word.occurrences << '\n';
+  }
+  cout << "\nThe total points for this massage is: " << total_points;
 
   file.close();
 }
-
-// Amazon
-// Apple
-// Bank of America
-// Chase
-// Citibank
-// eBay
-// Facebook
-// Federal Bureau of Investigation (FBI)
-// Google
-// Internal Revenue Service (IRS)
-// LinkedIn
-// Microsoft
-// Netflix
-// PayPal
-// Social Security Administration (SSA)
-// Twitter
-// Wells Fargo
-// American Express
-// Capital One
-// Discover
-// Mastercard
-// Visa
-
-// Account suspended
-// Alert!
-// Change your password immediately
-// Confirm your account information
-// Fraudulent activity detected
-// Important security update required
-// Login attempt failed
-// Your account has been hacked
