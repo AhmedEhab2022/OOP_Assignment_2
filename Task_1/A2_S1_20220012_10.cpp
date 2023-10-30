@@ -7,11 +7,9 @@
 // Date: 27 Oct 2023
 
 #include <iostream>
-#include <algorithm>
 #include <unordered_map>
 #include <vector>
 #include <fstream>
-#include <locale>
 
 using namespace std;
 
@@ -66,8 +64,8 @@ int main()
             // it means that the word is completed
             if (line[i] == ' ' || line[i] == '\0')
             {
-                // add a new space after each word expect the last one
-                if (output != "" && line[i] != '\0')
+                // add a new space after each word expect the last one in the line
+                if (output != "" && output[output.size() - 1] != '\n')
                         output += ' ';
 
                 // Check for the word is in the look up table or not
@@ -87,6 +85,7 @@ int main()
             else
                 word += line[i];
         }
+        output += '\n';
     }
     // Close the message or post file
     message_postF.close();
