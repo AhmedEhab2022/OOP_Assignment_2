@@ -52,7 +52,7 @@ int main()
     lookUpF.close();
 
     // Open the Arabic message or post file.
-    ifstream message_postF("Q10_Message_or_Post3.txt");
+    ifstream message_postF("Q10_Message_or_Post2.txt");
 
     while (getline(message_postF, line))
     {
@@ -94,7 +94,7 @@ int main()
     message_postF.close();
 
     // Open a new file that contains the edited message or post
-    ofstream fout("Q10_Message_or_Post3_edit.txt");
+    ofstream fout("Q10_Message_or_Post2_edit.txt");
     // Add the Arabic text in the new file
     fout << output2;
     // Close the new file
