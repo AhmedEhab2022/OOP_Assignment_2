@@ -16,7 +16,7 @@ using namespace std;
 int main()
 {
     int i, j;
-    string line, output = "";
+    string line, output = "", output2 = "";
     unordered_map<string, vector<string> > look_up_table;
 
     // Open the look up table file.
@@ -52,7 +52,7 @@ int main()
     lookUpF.close();
 
     // Open the Arabic message or post file.
-    ifstream message_postF("Q10_Message_or_Post2.txt");
+    ifstream message_postF("Q10_Message_or_Post3.txt");
 
     while (getline(message_postF, line))
     {
@@ -87,13 +87,16 @@ int main()
         }
         output += '\n';
     }
+    for (i = 0; i < output.size() - 1; i++)
+        output2 += output[i];
+
     // Close the message or post file
     message_postF.close();
 
     // Open a new file that contains the edited message or post
-    ofstream fout("Q10_Message_or_Post2_edit.txt");
+    ofstream fout("Q10_Message_or_Post3_edit.txt");
     // Add the Arabic text in the new file
-    fout << output;
+    fout << output2;
     // Close the new file
     fout.close();
     return 0;
