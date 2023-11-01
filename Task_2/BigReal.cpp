@@ -234,6 +234,8 @@ bool BigReal::operator==(BigReal anotherReal)
   return true;
 }
 
-// ostream &operator<<(ostream &out, BigReal num)
-// {
-// }
+ostream &operator<<(ostream &out, BigReal num)
+{
+  out << num.getNum();
+  return out;
+}

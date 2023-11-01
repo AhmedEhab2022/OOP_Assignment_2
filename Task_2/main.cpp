@@ -68,6 +68,7 @@ int main()
     cout << (n1 == n1) << '\n'; // true
     cout << (n1 == n6) << '\n'; // false
     cout << "\n=====================\n";
+    cout << n1 << '\n' << n2 << '\n' << n3 << '\n';
     // BigReal n3 = n1 + n2;
     // cout << n3;
     // n3 = n3 + BigReal (0.9);

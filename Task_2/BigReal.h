@@ -32,7 +32,7 @@ public:
     bool operator>(BigReal anotherReal);
     bool operator==(BigReal anotherReal);
 
-    // friend ostream &operator<<(ostream &out, BigReal num);
+    friend ostream &operator<<(ostream &out, BigReal num);
 };
 
 #endif // BIGREAL_H
