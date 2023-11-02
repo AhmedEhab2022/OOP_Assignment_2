@@ -17,9 +17,11 @@ public:
     BigReal(string realNumber);         // Initialize from string
     // BigReal(const BigReal &other);      // Copy constructor
     // BigReal &operator=(BigReal &other); // Assignment operator
-    // ~BigReal(); // Destructor
+    ~BigReal(); // Destructor
 
-    void setNum(string realNumber); // setter.
+    // setters.
+    void setNum(string realNumber);
+    void setSign(char sign);
     // Getters.
     string getNum(); 
     int getSize();
