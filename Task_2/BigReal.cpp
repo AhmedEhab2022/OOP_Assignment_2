@@ -17,10 +17,11 @@ bool BigReal::isValidReal(string realNumber)
   return 0;
 }
 
-// BigReal::BigReal(double realNumber = 0.0)
-// {
-
-// }
+BigReal::BigReal(double realNumber)
+{
+    // Convert the double real number to string to create a new BigReal number
+   this->setNum(to_string(realNumber));
+}
 
 BigReal::BigReal(string realNumber)
 {
@@ -98,9 +99,72 @@ char BigReal::getSign()
   return sign;
 }
 
-// BigReal operator+(BigReal &other)
-// {
-// }
+BigReal BigReal::operator+(BigReal &other)
+{
+  string result, integer1, integer2, frac1, frac2;
+  int i, carry = 0;
+  char temp;
+
+  integer1 = this->integer;
+  integer2 = other.integer;
+  frac1 = this->fraction;
+  frac2 = other.fraction;
+  // Check the sign of two numbers
+  if (this->sign == other.getSign())
+  {
+    // Store the remaining digits of the fraction that
+    // has more number of digits in the result 
+    if (frac1.size() > frac2.size())
+      result = frac1.substr(frac2.size(), frac1.size());
+
+    else if (frac1.size() < frac2.size())
+      result = frac2.substr(frac2.size(), frac2.size());
+
+    // Loop from the right to left and add the two digits with carry 
+    for (i = min(frac1.size(), frac2.size()) - 1; i >= 0; i--)
+    {
+      temp = carry + (frac1[i] + frac2[i] - '0');
+      if (temp > '9')
+      {
+        carry = 1;
+        temp -= 10;
+      }
+      else
+        carry = 0;
+
+      result = temp + result;
+    }
+    result = '.' + result;
+    // Pad the integer that has less number of digits to the right by zeros
+    while (integer1.size() > integer2.size())
+      integer2 = '0' + integer2;
+
+    while (integer1.size() < integer2.size())
+      integer1 = '0' + integer1;
+    
+    // Loop from the right to left and add the two digits with carry 
+    for (i = integer1.size() - 1; i >= 0; i--)
+    {
+      temp = carry + (integer1[i] + integer2[i] - '0');
+      if (temp > '9')
+      {
+        carry = 1;
+        temp -= 10;
+      }
+      else
+        carry = 0;
+
+      result = temp + result;
+    }
+    // make a new big real object to return the result
+    BigReal new_BigReal(result);
+    new_BigReal.sign = this->sign;
+    return new_BigReal;
+  }
+  else
+    // call the '-' operator
+    this->operator-(other);
+}
 
 // BigReal operator-(BigReal &other)
 // {

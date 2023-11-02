@@ -13,7 +13,7 @@ private:
     string integer, fraction;
 
 public:
-    // BigReal (double realNumber = 0.0); // Default constructor
+    BigReal (double realNumber = 0.0); // Default constructor
     BigReal(string realNumber);         // Initialize from string
     // BigReal(const BigReal &other);      // Copy constructor
     // BigReal &operator=(BigReal &other); // Assignment operator
@@ -25,7 +25,7 @@ public:
     int getSize();
     char getSign();
 
-    // BigReal operator+(BigReal &other);
+    BigReal operator+(BigReal &other);
     // BigReal operator-(BigReal &other);
 
     bool operator<(BigReal anotherReal);
