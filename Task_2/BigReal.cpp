@@ -161,10 +161,9 @@ BigReal BigReal::operator+(BigReal &other)
     new_BigReal.sign = this->sign;
     return new_BigReal;
   }
-  // Erorr
-  // else
+  else
     // call the '-' operator
-    // this->operator-(other);
+    this->operator-(other);
 }
 
 // BigReal operator-(BigReal &other)
