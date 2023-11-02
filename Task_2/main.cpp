@@ -31,8 +31,11 @@ int main()
     BigReal n2("-2333333333339.1134322222222292");
     BigReal n3("2333333333339.");
     BigReal n4(".1134322222222292");
-    BigReal n5(".");
+    //BigReal n5(".");
     BigReal n6("-11.9000000000000000000000000000000001");
+    BigReal n7;
+    BigReal n8;
+    BigReal n9;
     cout << "\n=====================\n";
     cout << n1.getNum() << '\n';
     cout << "size: " << n1.getSize() << '\n';
@@ -70,14 +73,15 @@ int main()
     cout << "\n=====================\n";
     cout << n1 << '\n' << n2 << '\n' << n3 << '\n';
     cout << "\n=====================\n";
-    BigReal n7;
     cout << n7 << '\n';
     cout << "\n=====================\n";
-    BigReal n8 = n1;
-    cout << n8 << '\n';
-    cout << "\n=====================\n";
-    BigReal n9 = n1 + n3;
+    n9 = n1 + n3;
     cout << n9 << '\n';
     cout << "\n=====================\n";
     n3 = n3 + BigReal (0.9);
+    cout << "\n=====================\n";
+    n8 = n1;
+    n8.setSign('-');
+    cout << n8 << '\n';
+    cout << n1 << '\n';
 }

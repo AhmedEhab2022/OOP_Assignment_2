@@ -84,6 +84,14 @@ void BigReal::setNum(string realNumber)
   }
 }
 
+void BigReal::setSign(char sign)
+{
+  if (sign == '+' || sign == '-')
+    this->sign = sign;
+  else
+    cout << "Invalid sign\n";
+}
+
 string BigReal::getNum()
 {
   return sign + integer + "." + fraction;
@@ -161,9 +169,9 @@ BigReal BigReal::operator+(BigReal &other)
     new_BigReal.sign = this->sign;
     return new_BigReal;
   }
-  else
-    // call the '-' operator
-    this->operator-(other);
+  // else
+  //    call the '-' operator
+  //    this->operator-(other);
 }
 
 // BigReal operator-(BigReal &other)
@@ -300,6 +308,14 @@ bool BigReal::operator==(BigReal anotherReal)
 
 ostream &operator<<(ostream &out, BigReal num)
 {
-  out << num.getNum();
+  if (num.sign == '-')
+    out << num.sign;
+
+  out << num.integer + '.' + num.fraction;
   return out;
+}
+
+BigReal::~BigReal()
+{
+
 }
