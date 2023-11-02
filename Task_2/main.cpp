@@ -19,7 +19,7 @@
 
 // TA: Maya Ahmed Kamal
 
-// Purpose: ........
+// Purpose: a class for real numbers that are unlimited and with high precisionn
 
 #include "BigReal.cpp"
 #include <iostream>
@@ -34,6 +34,7 @@ int main()
     BigReal n5(".");
     BigReal n6("-11.9000000000000000000000000000000001");
     cout << "\n=====================\n";
+    cout << "Getters test: \n";
     cout << n1.getNum() << '\n';
     cout << "size: " << n1.getSize() << '\n';
     cout << n2.getNum() << '\n';
@@ -45,6 +46,7 @@ int main()
     cout << n5.getNum() << '\n';
     cout << "size: " << n5.getSize() << '\n';
     cout << "\n=====================\n";
+    cout << "Less than operator < test: \n";
     cout << boolalpha;
     cout << (n1 < n2) << '\n'; // false
     cout << (n2 < n1) << '\n'; // true
@@ -53,6 +55,7 @@ int main()
     cout << (n2 < n3) << '\n'; // true
     cout << (n1 < n4) << '\n'; // false
     cout << "\n=====================\n";
+    cout << "Greater than operator > test: \n";
     cout << (n1 > n2) << '\n'; // true
     cout << (n2 > n1) << '\n'; // false
     cout << (n1 > n3) << '\n'; // false
@@ -60,6 +63,7 @@ int main()
     cout << (n2 > n3) << '\n'; // false
     cout << (n1 > n4) << '\n'; // true
     cout << "\n=====================\n";
+    cout << "Equality operator == test: \n";
     cout << (n1 == n2) << '\n'; // false
     cout << (n2 == n1) << '\n'; // false
     cout << (n1 == n3) << '\n'; // false
@@ -68,16 +72,21 @@ int main()
     cout << (n1 == n1) << '\n'; // true
     cout << (n1 == n6) << '\n'; // false
     cout << "\n=====================\n";
+    cout << "Insertion operator << test: \n";
     cout << n1 << '\n' << n2 << '\n' << n3 << '\n';
     cout << "\n=====================\n";
+    cout << "Default constructor test: \n";
     BigReal n7;
     cout << n7 << '\n';
     cout << "\n=====================\n";
+    cout << "Assignment operator = test: \n";
     BigReal n8 = n1;
     cout << n8 << '\n';
     cout << "\n=====================\n";
+    cout << "Addition operator + test: \n";
     BigReal n9 = n1 + n3;
     cout << n9 << '\n';
     cout << "\n=====================\n";
-    n3 = n3 + BigReal (0.9);
+    // Erorr
+    // n3 = n3 + BigReal (0.9);
 }
