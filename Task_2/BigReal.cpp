@@ -5,12 +5,14 @@
 bool BigReal::isValidReal(string realNumber)
 {
   // Here b is an object of regex (regular expression)
-  regex reg1("([0-9]*.[0-9]+)"); //
-  regex reg2("([0-9]+.[0-9]*)"); //
+  regex reg1("([^ ][0-9]*.[0-9]+)"); //
+  regex reg2("([^ ][0-9]+.[0-9]*)"); //
 
   // regex_match function matches realNumber against regex reg
   if (regex_match(realNumber, reg1) | regex_match(realNumber, reg2))
   {
+    if(regex_match(realNumber, reg1)) cout << "\n###### reg 1 ######\n";
+    else cout << "\n###### reg 2 ######\n";
     return 1;
   }
 
