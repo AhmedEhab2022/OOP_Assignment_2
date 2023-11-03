@@ -57,7 +57,7 @@ void BigReal::setNum(string realNumber)
     }
     else
     {
-      cout << "Error: not a valid real number.\n";
+      cout << "Error: not a valid real number \"" << realNumber << "\"\n";
       this->integer = this->fraction = "0";
     }
   }
