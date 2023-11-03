@@ -34,7 +34,7 @@ int main()
     // BigReal n5(".");
     BigReal n6("-11.9000000000000000000000000000000001");
     BigReal n7;
-    BigReal n8("- 4356");
+    BigReal n8("-A12.999000000");
     BigReal n9;
     cout << "\n=====================\n";
     cout << n1.getNum() << '\n';
