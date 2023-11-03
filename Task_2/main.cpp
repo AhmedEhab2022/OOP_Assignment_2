@@ -36,7 +36,6 @@ int main()
     BigReal n7("-1.234");
     BigReal n8("-A12.999000000"); // invalid
     BigReal n9("-2.234");
-    n1 = n2;
     cout << "\n=====================\n";
     cout << n1.getNum() << '\n';
     cout << "size: " << n1.getSize() << '\n';
@@ -86,4 +85,8 @@ int main()
     // n8.setSign('-');
     // cout << n8 << '\n';
     // cout << n1 << '\n';
+    BigReal a1 ("144.00993");
+    BigReal a2 ("56.954");
+    cout<< a1-a2<<'\n';
+    cout<< a1<< "  " << a2 ;
 }
