@@ -181,9 +181,231 @@ BigReal BigReal::operator+(BigReal &other)
   //    this->operator-(other);
 }
 
-// BigReal operator-(BigReal &other)
-// {
-// }
+BigReal BigReal :: operator- (BigReal& other)
+{   // two BigReal to copy the values of variable
+     BigReal result("0.0");
+     BigReal second("0.0");
+     bool bigger=true;
+    // make sure that the strings of BigReal is not empty
+     if(integer.size()==0){
+        integer="0";
+     }
+      if(fraction.size()==0){
+        fraction="0";
+     }
+     if(sign != '-'){
+        sign = '+';
+     }
+
+      if(other.integer.size()==0){
+        integer="0";
+     }
+      if(other.fraction.size()==0){
+        fraction="0";
+     }
+     if(other.sign!='-'){
+        sign='+';
+     }
+    // check the sign to determine which operation will happen
+    if(sign != other.sign){
+        if(sign == '+' && other.sign == '-')
+            other.sign='+';
+        else if(sign == '-' && other.sign == '+')
+            other.sign='-';
+        // call operator + after change the sign of second variable
+        BigReal operator+ (BigReal& other);
+    }
+    else if(sign == other.sign){
+        // if the integer of the first is bigger , the result sign will be first's sign
+        if(integer.size() > other.integer.size()){
+            result.sign = sign;
+        }
+        // if the integer of the seond is bigger , the result sign will be opposite of second's sign
+        else if(integer.size() < other.integer.size()){
+            if(sign == '+' && other.sign == '+')
+                result.sign='-';
+            else if(sign == '-' && other.sign == '-')
+                result.sign='+';
+            bigger =false;
+        }
+        // if the size is equal , loop over the integer
+        else if(integer.size() == other.integer.size()){
+            for(int i=0 ; i< integer.size(); i++){
+                // subtract every index from another to determine which is bigger
+                if(((integer[i]-'0') - (other.integer[i]-'0'))>0){
+                    result.sign =sign;
+                    break;
+                }
+                else if(((integer[i]-'0') - (other.integer[i]-'0'))<0){
+                    if(sign == '+' && other.sign == '+')
+                        result.sign='-';
+                    else if(sign == '-' && other.sign == '-')
+                        result.sign='+';
+                    bigger =false;
+                    break;
+                }
+                // if the integer part is the same in the two variable , we will compare the fraction part
+                else if(((integer[i]-'0') - (other.integer[i]-'0')) == 0 && i ==integer.size()-1 ){
+                    for(int i=0 ; i<min(fraction.size() , other.fraction.size()) ; i++){
+                        if(fraction[i]>other.fraction[i]){
+                            result.sign = sign;
+                            break;
+                        }
+                        else if(other.fraction[i]>fraction[i]){
+                              if(sign == '+' && other.sign == '+')
+                                result.sign='-';
+                            else if(sign == '-' && other.sign == '-')
+                                result.sign='+';
+                            bigger =false;
+                            break;
+                        }
+                        else if(other.fraction[i] == fraction[i] && i==min(fraction.size() , other.fraction.size()) - 1 ){
+                            if(fraction.size() > other.fraction.size())
+                                result.sign = sign;
+                            else if(fraction.size() < other.fraction.size()){
+                                if(sign == '+' && other.sign == '+')
+                                    result.sign='-';
+                                else if(sign == '-' && other.sign == '-')
+                                    result.sign='+';
+                                bigger =false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    // make BigReal result the bigger value and the second is the another value
+     if(bigger == true){
+        result.integer=integer;
+        result.fraction=fraction;
+
+        second.fraction=other.fraction;
+        second.integer=other.integer;
+     }
+     else if(bigger == false){
+        result.integer=other.integer;
+        result.fraction=other.fraction;
+
+        second.fraction=fraction;
+        second.integer=integer;
+     }
+
+        // fraction
+        // calculate how many zeros to add to the left side of integer part to the lower value
+        int zeros = 0;
+        if(result.fraction.size()<second.fraction.size()){
+        zeros =second.fraction.size()-result.fraction.size();
+            for(int i=0 ; i< zeros ; i++){
+                result.fraction +='0';
+            }
+        }
+        else if(result.fraction.size()>second.fraction.size()){
+            zeros =result.fraction.size()-second.fraction.size();
+            for(int i=0 ; i< zeros ; i++){
+                second.fraction +='0';
+            }
+        }
+        // loop over the lower value from the right to left and subtract each index from the another variable
+            for(int i=second.fraction.size() ; i>=0 ; i--){
+                if(result.fraction[i]>= second.fraction[i]){
+                    result.fraction[i]=result.fraction[i]-second.fraction[i]+'0';
+                }
+                // if the bigger variable's index value is less than the lower's index value we add 10
+                // and subtract 1 from the next index
+                else if(result.fraction[i]< second.fraction[i]){
+                    result.fraction[i]=result.fraction[i]-second.fraction[i]+'0'+10;
+                    if(i == 0){
+                        result.integer[result.integer.size()-1] -= 1;
+                    }
+                    else{
+                        // if the next value is '0' we make index = 9 and subtract from the next index
+                        for(int j=i-1 ; j>=0 ; j--){
+                            result.fraction[j]=result.fraction[j]-1;
+                            if(fraction[j]>=48 && fraction[j]<=57){
+                                break;
+                            }
+                            else{
+                                // if the fraction part end and we need carry we subtract from integer part
+                                result.fraction[j]='9';
+                                if(j == 0 ){
+                                    integer[integer.size()-1]-=1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        // integer
+        // we will do the same steps on integer part as fraction part
+        if(result.integer.size()<second.integer.size()){
+        zeros =second.integer.size()-result.integer.size();
+        string temp;
+            for(int i=0 ; i< zeros ; i++){
+                temp +='0';
+            }
+            temp += result.integer;
+            result.integer = temp;
+        }
+        else if(result.integer.size()>second.integer.size()){
+            zeros =result.integer.size()-second.integer.size();
+            string temp;
+            for(int i=0 ; i< zeros ; i++){
+                    temp +='0';
+            }
+            temp += second.integer;
+            second.integer = temp;
+
+        }
+        for(int i=second.integer.size() ; i>=0 ; i--){
+            if(result.integer[i]>= second.integer[i]){
+                result.integer[i]=result.integer[i]-second.integer[i]+'0';
+            }
+            else if(result.integer[i]< second.integer[i]){
+                result.integer[i]=result.integer[i]-second.integer[i]+'0'+10;
+                for(int j=i-1 ; j>=0 ; j--){
+                    result.integer[j]=result.integer[j]-1;
+                    if(result.integer[j]>=48 && result.integer[j]<=57){
+                        break;
+                    }
+                    else{
+                        result.integer[j]='9';
+                    }
+                }
+            }
+        }
+    // remove useless zeros from the right side of fraction part and left side of integer part
+     string tmpint = result.integer;
+     string tmpfrc = result.fraction;
+     int idx = 0;
+    for(int i=0 ; i<tmpint.size() ; i++){
+        if(tmpint[i] == '0'){
+            idx++;
+        }
+        else if(tmpint[i] != '0')
+            break;
+    }
+    result.integer = tmpint.substr(idx , result.integer.size());
+    idx = 0;
+    for(int i=tmpfrc.size()-1 ; i>=0 ; i--){
+        if(tmpfrc[i] == '0'){
+            idx++;
+        }
+        else if(tmpfrc[i] != '0')
+            break;
+    }
+    result.fraction = tmpfrc.substr(0 , result.fraction.size() - idx);
+
+    if(result.integer.size()==0){
+        result.integer="0";
+     }
+      if(result.fraction.size()==0){
+        result.fraction="0";
+     }
+    return result ;
+    }
+}
 
 bool BigReal::operator<(BigReal anotherReal)
 {
