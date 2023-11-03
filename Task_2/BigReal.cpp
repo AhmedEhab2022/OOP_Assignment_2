@@ -5,8 +5,8 @@
 bool BigReal::isValidReal(string realNumber)
 {
   // Here b is an object of regex (regular expression)
-  regex reg1("([^ +-][0-9]*.[0-9]+)"); //
-  regex reg2("([^ +-][0-9]+.[0-9]*)"); //
+  regex reg1("([^ +-][0-9]*.?[0-9]+)"); //
+  regex reg2("([^ +-][0-9]+.?[0-9]*)"); //
   regex reg3("(.*[a-zA-Z]+.*)");       //
 
   // regex_match function matches realNumber against regex reg
