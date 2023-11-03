@@ -23,12 +23,12 @@ public:
     void setNum(string realNumber);
     void setSign(char sign);
     // Getters.
-    string getNum(); 
+    string getNum();
     int getSize();
     char getSign();
 
-    BigReal operator+(BigReal &other);
-    // BigReal operator-(BigReal &other);
+    BigReal operator+ (BigReal& other);
+    BigReal operator- (BigReal& other);
 
     bool operator<(BigReal anotherReal);
     bool operator>(BigReal anotherReal);
