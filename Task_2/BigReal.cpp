@@ -11,8 +11,6 @@ bool BigReal::isValidReal(string realNumber)
   // regex_match function matches realNumber against regex reg
   if (regex_match(realNumber, reg1) | regex_match(realNumber, reg2))
   {
-    if(regex_match(realNumber, reg1)) cout << "\n###### reg 1 ######\n";
-    else cout << "\n###### reg 2 ######\n";
     return 1;
   }
 
@@ -21,8 +19,8 @@ bool BigReal::isValidReal(string realNumber)
 
 BigReal::BigReal(double realNumber)
 {
-    // Convert the double real number to string to create a new BigReal number
-   this->setNum(to_string(realNumber));
+  // Convert the double real number to string to create a new BigReal number
+  this->setNum(to_string(realNumber));
 }
 
 BigReal::BigReal(string realNumber)
@@ -123,14 +121,14 @@ BigReal BigReal::operator+(BigReal &other)
   if (this->sign == other.getSign())
   {
     // Store the remaining digits of the fraction that
-    // has more number of digits in the result 
+    // has more number of digits in the result
     if (frac1.size() > frac2.size())
       result = frac1.substr(frac2.size(), frac1.size());
 
     else if (frac1.size() < frac2.size())
       result = frac2.substr(frac2.size(), frac2.size());
 
-    // Loop from the right to left and add the two digits with carry 
+    // Loop from the right to left and add the two digits with carry
     for (i = min(frac1.size(), frac2.size()) - 1; i >= 0; i--)
     {
       temp = carry + (frac1[i] + frac2[i] - '0');
@@ -151,8 +149,8 @@ BigReal BigReal::operator+(BigReal &other)
 
     while (integer1.size() < integer2.size())
       integer1 = '0' + integer1;
-    
-    // Loop from the right to left and add the two digits with carry 
+
+    // Loop from the right to left and add the two digits with carry
     for (i = integer1.size() - 1; i >= 0; i--)
     {
       temp = carry + (integer1[i] + integer2[i] - '0');
@@ -319,5 +317,4 @@ ostream &operator<<(ostream &out, BigReal num)
 
 BigReal::~BigReal()
 {
-
 }

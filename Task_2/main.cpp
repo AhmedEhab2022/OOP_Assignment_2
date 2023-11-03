@@ -45,7 +45,7 @@ int main()
     cout << "size: " << n3.getSize() << '\n';
     cout << n4.getNum() << '\n';
     cout << "size: " << n4.getSize() << '\n';
-    cout << "n8: "<<n8.getNum() << '\n';
+    cout << n8.getNum() << '\n';
     cout << "size: " << n8.getSize() << '\n';
     cout << "\n=====================\n";
     // cout << boolalpha;
