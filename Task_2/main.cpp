@@ -31,11 +31,11 @@ int main()
     BigReal n2("-2333333333339.1134322222222292");
     BigReal n3("2333333333339.");
     BigReal n4(".1134322222222292");
-    // BigReal n5(".");
+    BigReal n5("."); // invalid
     BigReal n6("-11.9000000000000000000000000000000001");
-    BigReal n7;
-    BigReal n8("-A12.999000000");
-    BigReal n9;
+    BigReal n7("-1.234");
+    BigReal n8("-A12.999000000"); // invalid
+    BigReal n9("-2.234");
     cout << "\n=====================\n";
     cout << n1.getNum() << '\n';
     cout << "size: " << n1.getSize() << '\n';
@@ -48,8 +48,9 @@ int main()
     cout << n8.getNum() << '\n';
     cout << "size: " << n8.getSize() << '\n';
     cout << "\n=====================\n";
-    // cout << boolalpha;
+    cout << boolalpha;
     // cout << (n1 < n2) << '\n'; // false
+    // cout << (n7 < n9) << '\n'; // false
     // cout << (n2 < n1) << '\n'; // true
     // cout << (n1 < n3) << '\n'; // true
     // cout << (n3 < n4) << '\n'; // false

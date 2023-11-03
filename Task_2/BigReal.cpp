@@ -196,6 +196,15 @@ bool BigReal::operator<(BigReal anotherReal)
   {
     return false;
   }
+  else if (this->sign == '-' && anotherReal.sign == '-')
+  {
+    this->setSign('+');
+    anotherReal.setSign('+');
+    bool ans = (this->operator>(anotherReal));
+    this->setSign('-');
+    anotherReal.setSign('-');
+    return ans;
+  }
   // check for the integer part
   if (this->integer.size() < anotherReal.integer.size())
   {
@@ -249,6 +258,15 @@ bool BigReal::operator>(BigReal anotherReal)
   else if (this->sign == '+' && anotherReal.sign == '-')
   {
     return true;
+  }
+  else if (this->sign == '-' && anotherReal.sign == '-')
+  {
+    this->setSign('+');
+    anotherReal.setSign('+');
+    bool ans = (this->operator<(anotherReal));
+    this->setSign('-');
+    anotherReal.setSign('-');
+    return ans;
   }
   // check for the integer part
   if (this->integer.size() > anotherReal.integer.size())
