@@ -39,9 +39,13 @@ BigReal::BigReal(string realNumber)
 // {
 // }
 
-// BigReal &BigReal::operator=(BigReal &other)
-// {
-// }
+BigReal &BigReal::operator=(BigReal &other)
+{
+    sign = other.sign;
+    integer = other.integer;
+    fraction = other.fraction;
+    return other;
+}
 
 void BigReal::setNum(string realNumber)
 {
@@ -193,19 +197,22 @@ BigReal BigReal :: operator- (BigReal& other)
       if(fraction.size()==0){
         fraction="0";
      }
-     if(sign != '-'){
-        sign = '+';
+     if(sign == '-' || sign == '+'){
      }
+     else
+        sign = '+';
 
-      if(other.integer.size()==0){
-        integer="0";
+    if(other.integer.size()==0){
+        other.integer="0";
      }
       if(other.fraction.size()==0){
-        fraction="0";
+        other.fraction="0";
      }
-     if(other.sign!='-'){
-        sign='+';
+     if(other.sign == '-' || other.sign == '+'){
      }
+     else
+        other.sign = '+';
+
     // check the sign to determine which operation will happen
     if(sign != other.sign){
         if(sign == '+' && other.sign == '-')
@@ -555,6 +562,11 @@ bool BigReal::operator==(BigReal anotherReal)
 
 ostream &operator<<(ostream &out, BigReal num)
 {
+  if(num.integer.size()==0)
+    num.integer="0";
+  if(num.fraction.size()==0)
+    num.fraction = "0";
+
   if (num.sign == '-')
     out << num.sign;
 
