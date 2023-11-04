@@ -15,20 +15,20 @@ private:
 public:
     BigReal (double realNumber = 0.0); // Default constructor
     BigReal(string realNumber);         // Initialize from string
-    // BigReal(const BigReal &other);      // Copy constructor
-    // BigReal &operator=(BigReal &other); // Assignment operator
+    BigReal(const BigReal& other);      // Copy constructor
+    BigReal &operator=(BigReal &other); // Assignment operator
     ~BigReal(); // Destructor
 
     // setters.
     void setNum(string realNumber);
     void setSign(char sign);
     // Getters.
-    string getNum(); 
+    string getNum();
     int getSize();
     char getSign();
 
-    BigReal operator+(BigReal &other);
-    // BigReal operator-(BigReal &other);
+    BigReal operator+ (BigReal& other);
+    BigReal operator- (BigReal& other);
 
     bool operator<(BigReal anotherReal);
     bool operator>(BigReal anotherReal);

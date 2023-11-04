@@ -31,11 +31,11 @@ int main()
     BigReal n2("-2333333333339.1134322222222292");
     BigReal n3("2333333333339.");
     BigReal n4(".1134322222222292");
-    BigReal n5(".");
+    BigReal n5("."); // invalid
     BigReal n6("-11.9000000000000000000000000000000001");
-    BigReal n7;
-    BigReal n8;
-    BigReal n9;
+    BigReal n7("-1.234");
+    BigReal n8("-A12.999000000"); // invalid
+    BigReal n9("-2.234");
     cout << "\n=====================\n";
     cout << n1.getNum() << '\n';
     cout << "size: " << n1.getSize() << '\n';
@@ -45,8 +45,8 @@ int main()
     cout << "size: " << n3.getSize() << '\n';
     cout << n4.getNum() << '\n';
     cout << "size: " << n4.getSize() << '\n';
-    cout << n5.getNum() << '\n';
-    cout << "size: " << n5.getSize() << '\n';
+    cout << n8.getNum() << '\n';
+    cout << "size: " << n8.getSize() << '\n';
     cout << "\n=====================\n";
     cout << boolalpha;
     cout << (n1 < n2) << '\n'; // false
@@ -78,15 +78,10 @@ int main()
     n9 = n1 + n3;
     cout << n9 << '\n';
     cout << "\n=====================\n";
-    // n3 = n3 + BigReal (0.9);
+    n3 = n3 + BigReal (0.9);
     cout << "\n=====================\n";
     n8 = n1;
     n8.setSign('-');
     cout << n8 << '\n';
     cout << n1 << '\n';
-    cout << "\n=====================\n";
-    BigReal n10 = n2;
-    n10.setSign('+');
-    cout << n10 << '\n';
-    cout << n2 << '\n';
 }
