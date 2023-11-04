@@ -35,9 +35,12 @@ BigReal::BigReal(string realNumber)
   BigReal::setNum(realNumber);
 }
 
-// BigReal::BigReal(const BigReal &other)
-// {
-// }
+BigReal::BigReal(const BigReal& other)
+{
+    sign = other.sign ;
+    integer = other.integer ;
+    fraction = other.fraction ;
+}
 
 BigReal &BigReal::operator=(BigReal &other)
 {
