@@ -183,9 +183,24 @@ BigReal BigReal::operator+(BigReal &other)
     new_BigReal.sign = this->sign;
     return new_BigReal;
   }
-  // else
-  //    call the '-' operator
-  //    this->operator-(other);
+   else if(this->sign != other.sign){
+    BigReal s1 , s2;
+    if(this->sign == '-' && other.sign == '+'){
+        s1 = other;
+        s2.sign = '+';
+        s2.integer = this->integer;
+        s2.fraction = this->fraction;
+        return s1-s2;
+    }
+    else if(this->sign == '+' && other.sign == '-'){
+        s1.sign = this->sign;
+        s1.integer = this->integer;
+        s1.fraction = this->fraction;
+        s2 = other;
+        s2.sign = '+';
+        return s1-s2;
+    }
+   }
 }
 
 BigReal BigReal :: operator- (BigReal& other)
@@ -218,12 +233,18 @@ BigReal BigReal :: operator- (BigReal& other)
 
     // check the sign to determine which operation will happen
     if(sign != other.sign){
+        BigReal s1 , s2;
         if(sign == '+' && other.sign == '-')
-            other.sign='+';
+            s2.sign='+';
         else if(sign == '-' && other.sign == '+')
-            other.sign='-';
+            s2.sign='-';
         // call operator + after change the sign of second variable
-        BigReal operator+ (BigReal& other);
+        s1.sign=sign;
+        s1.integer = integer;
+        s1.fraction = fraction;
+        s2.integer = other.integer;
+        s2.fraction = other.fraction;
+        return s1+s2;
     }
     else if(sign == other.sign){
         // if the integer of the first is bigger , the result sign will be first's sign
