@@ -3,7 +3,7 @@
 // Author: Ahmed Ehab Shehata Ali
 // Section: S1
 // ID: 20220012
-// TA: Maya Ahmed Kamal
+// TA: Khaled Ibrahem
 // Date: 27 Oct 2023
 
 #include <iostream>
@@ -60,7 +60,7 @@ bool FormsDominoChain(vector<dominoT> & dominos)
             // increase i by 1 to check for the next piece
             i++;
     }
-    // no operation was done then cannot be formed 
+    // no operation was done then cannot be formed
     if (i == j)
         return (false);
 
@@ -75,7 +75,7 @@ bool FormsDominoChain(vector<dominoT> & dominos)
     if (i == j)
         return (true);
 
-    // if the counter equal to number of pieces - 1 then the 
+    // if the counter equal to number of pieces - 1 then the
     else if (cnt == dominos.size() - 1)
         return (false);
 
