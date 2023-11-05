@@ -140,7 +140,7 @@ BigReal BigReal::operator+(BigReal &other)
       result = frac1.substr(frac2.size(), frac1.size());
 
     else if (frac1.size() < frac2.size())
-      result = frac2.substr(frac2.size(), frac2.size());
+      result = frac2.substr(frac1.size(), frac2.size());
 
     // Loop from the right to left and add the two digits with carry
     for (i = min(frac1.size(), frac2.size()) - 1; i >= 0; i--)
