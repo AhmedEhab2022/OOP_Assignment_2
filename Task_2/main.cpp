@@ -85,9 +85,11 @@ int main()
     // n8.setSign('-');
     // cout << n8 << '\n';
     // cout << n1 << '\n';
-    BigReal a1 ("144.00993");
-    BigReal a2 ("56.954");
+    BigReal a1 ("-144.00993");
+    BigReal a2 ("999.954");
     BigReal a3 (a1);
-    cout<< a1-a2<<'\n';
-    cout<< a1<< "  " << a2 << "  " << a3 ;
+    cout<< a1<< "  " << a2 << "  " << a3<<'\n' ;
+    cout<< a2+a1<<'\n';
+    cout<< a1<< "  " << a2 << "  " << a3<<'\n' ;
+
 }
