@@ -20,7 +20,7 @@ int main(){
         // at the beginning of the sentence
         if(i == 0){
             // Replace "he" with "he or she"
-            if( (s[i] == 'h' || s[i] == 'H' ) && (s[i+1] == 'e' ) && (s[i+2] ==' ' || s[i+2] =='.' || s[i+2] =='?') ) {
+            if( (s[i] == 'h' || s[i] == 'H' ) && (s[i+1] == 'e' ) && (s[i+2] ==' ' || s[i+2] =='.' || s[i+2] =='?' || s[i+2] ==',') ) {
                 if(s[i] == 'H')
                     cout<<"He or she"<<s[i+2];
                 else
@@ -28,7 +28,7 @@ int main(){
                 i += 2;
             }
             // Replace "him" with "him or her"
-            else if ( (s[i] == 'h' || s[i] == 'H') && (s[i+1] == 'i') && (s[i+2] == 'm') && ((s[i+3] ==' ' || s[i+3] =='.' || s[i+3] =='?')) ){
+            else if ( (s[i] == 'h' || s[i] == 'H') && (s[i+1] == 'i') && (s[i+2] == 'm') && ((s[i+3] ==' ' || s[i+3] =='.' || s[i+3] =='?' || s[i+3] ==',')) ){
                  if(s[i] == 'H')
                     cout<<"Him or her"<<s[i+3];
                 else
@@ -36,7 +36,7 @@ int main(){
                 i += 3;
             }
             // Replace "his" with "his or hers"
-            else if ( (s[i] == 'h' || s[i] == 'H') && (s[i+1] == 'i') && (s[i+2] == 's') && ((s[i+3] ==' ' || s[i+3] =='.' || s[i+3] =='?')) ){
+            else if ( (s[i] == 'h' || s[i] == 'H') && (s[i+1] == 'i') && (s[i+2] == 's') && ((s[i+3] ==' ' || s[i+3] =='.' || s[i+3] =='?' || s[i+3] ==',')) ){
                  if(s[i] == 'H')
                     cout<<"His or hers"<<s[i+3];
                 else
@@ -44,7 +44,7 @@ int main(){
                 i += 3;
             }
             // Replace "himself" with "himself or herself"
-            else if ( (s[i] == 'h' || s[i] == 'H') && (s[i+1] == 'i') && (s[i+2] == 'm') && (s[i+3] == 's') && (s[i+4] == 'e') && (s[i+5] == 'l') && (s[i+6] == 'f') && ((s[i+7] ==' ' || s[i+7] =='.' || s[i+7] =='?')) ){
+            else if ( (s[i] == 'h' || s[i] == 'H') && (s[i+1] == 'i') && (s[i+2] == 'm') && (s[i+3] == 's') && (s[i+4] == 'e') && (s[i+5] == 'l') && (s[i+6] == 'f') && ((s[i+7] ==' ' || s[i+7] =='.' || s[i+7] =='?' || s[i+7] ==',')) ){
                  if(s[i] == 'H')
                     cout<<"Himself or herself"<<s[i+7];
                 else
@@ -58,7 +58,7 @@ int main(){
         // if i != 0
         else if(s[i-1] ==' ' || s[i-1] =='.' || s[i-1] =='?'){
             // Replace "he" with "he or she"
-            if( (s[i] == 'h' || s[i] == 'H' ) && (s[i+1] == 'e' ) && (s[i+2] ==' ' || s[i+2] =='.' || s[i+2] =='?') ) {
+            if( (s[i] == 'h' || s[i] == 'H' ) && (s[i+1] == 'e' ) && (s[i+2] ==' ' || s[i+2] =='.' || s[i+2] =='?' || s[i+2] ==',') ) {
                 if(s[i] == 'H')
                     cout<<"He or she"<<s[i+2];
                 else
@@ -66,7 +66,7 @@ int main(){
                 i += 2;
             }
             // Replace "him" with "him or her"
-            else if( (s[i] == 'h' || s[i] == 'H') && (s[i+1] == 'i') && (s[i+2] == 'm') && ((s[i+3] ==' ' || s[i+3] =='.' || s[i+3] =='?')) ){
+            else if( (s[i] == 'h' || s[i] == 'H') && (s[i+1] == 'i') && (s[i+2] == 'm') && ((s[i+3] ==' ' || s[i+3] =='.' || s[i+3] =='?' || s[i+3] ==',')) ){
                 if(s[i] == 'H')
                     cout<<"Him or her"<<s[i+3];
                 else
@@ -74,7 +74,7 @@ int main(){
                 i += 3;
             }
             // Replace "his" with "his or hers"
-            else if ( (s[i] == 'h' || s[i] == 'H') && (s[i+1] == 'i') && (s[i+2] == 's') && ((s[i+3] ==' ' || s[i+3] =='.' || s[i+3] =='?')) ){
+            else if ( (s[i] == 'h' || s[i] == 'H') && (s[i+1] == 'i') && (s[i+2] == 's') && ((s[i+3] ==' ' || s[i+3] =='.' || s[i+3] =='?' || s[i+3] ==',')) ){
                  if(s[i] == 'H')
                     cout<<"His or hers"<<s[i+3];
                 else
@@ -82,7 +82,7 @@ int main(){
                 i += 3;
             }
             // Replace "himself" with "himself or herself"
-            else if ( (s[i] == 'h' || s[i] == 'H') && (s[i+1] == 'i') && (s[i+2] == 'm') && (s[i+3] == 's') && (s[i+4] == 'e') && (s[i+5] == 'l') && (s[i+6] == 'f') && ((s[i+7] ==' ' || s[i+7] =='.' || s[i+7] =='?')) ){
+            else if ( (s[i] == 'h' || s[i] == 'H') && (s[i+1] == 'i') && (s[i+2] == 'm') && (s[i+3] == 's') && (s[i+4] == 'e') && (s[i+5] == 'l') && (s[i+6] == 'f') && ((s[i+7] ==' ' || s[i+7] =='.' || s[i+7] =='?' || s[i+7] ==',')) ){
                  if(s[i] == 'H')
                     cout<<"Himself or herself"<<s[i+7];
                 else

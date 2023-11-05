@@ -27,7 +27,7 @@ int main(){
     file1.open(name1);
     // check if the first file will open successfully
     if ( file1.fail() ){
-        cout << "Error can't open the file ,please check the name and try again\n";
+        cout << "Error can't open the file ,please check the name and extension and try again\n";
         return 0;
     }
     // take second file name from the user and open it
@@ -36,7 +36,7 @@ int main(){
     file2.open(name2);
     // check if the second file will open successfully
      if ( file2.fail() ){
-        cout << "Error can't open the file ,please check the name and try again\n";
+        cout << "Error can't open the file ,please check the name and extension and try again\n";
         return 0;
     }
     // the message to make the user select comparison way
@@ -64,10 +64,11 @@ int main(){
                     continue;
                 else{
                     flag =false;
+                    cout<<"The files are not identical\n";
                     cout<<"The number of the first line that is different is : "<<lines<<'\n';
                     cout<<"The content of the first line that is different in the first file is :"<<'\n';
                     cout<<line1<<'\n';
-                    cout<<"The content of the second line that is different in the first file is :"<<'\n';
+                    cout<<"The content of the first line that is different in the second file is :"<<'\n';
                     cout<<line2<<'\n';
                     // break for loop
                     break;
@@ -108,6 +109,7 @@ int main(){
                     continue;
                 else{
                     flag =false;
+                    cout<<"The files are not identical\n";
                     cout<<"The number of the first line that is different is : "<<lines<<'\n';
                     cout<<"The  first different word of the first file is :"<<'\n';
                     cout<<s1[i]<<'\n';

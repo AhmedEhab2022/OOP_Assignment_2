@@ -96,8 +96,10 @@ void add_player(){
 
 //print top 10 scores
 void print_top_scores(){
+    int i = 0;
     for(auto prt = lis.begin() ; prt != lis.end(); prt++){
-        cout<< (*prt).second<<"   "<< (*prt).first<<'\n';
+         i++;
+        cout<< i << "-" <<(*prt).second<<"   "<< (*prt).first<<'\n';
     }
 }
 
