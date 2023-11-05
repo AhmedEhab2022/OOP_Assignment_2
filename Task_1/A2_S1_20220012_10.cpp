@@ -3,7 +3,7 @@
 // Author: Ahmed Ehab Shehata Ali
 // Section: S1
 // ID: 20220012
-// TA: Maya Ahmed Kamal
+// TA: Khaled Ibrahem
 // Date: 27 Oct 2023
 
 #include <iostream>
@@ -75,7 +75,7 @@ int main()
                     output += word;
                 else
                 {
-                    // Process that done to generate a random index  
+                    // Process that done to generate a random index
                     int random = rand() % look_up_table[word].size();
                     output += look_up_table[word][random];
                 }
