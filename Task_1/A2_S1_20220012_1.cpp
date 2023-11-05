@@ -3,7 +3,7 @@
 // Author: Ahmed Ehab Shehata Ali
 // Section: S1
 // ID: 20220012
-// TA: Maya Ahmed Kamal
+// TA: Khaled Ibrahem
 // Date: 25 Oct 2023
 
 #include <iostream>
@@ -24,16 +24,16 @@ int main()
     for (i = 1; i < sentence.size(); i++)
     {
         // add the first space only by check if the prev character is not a space
-        if (sentence[i] == ' ' && !sentence[i - 1] == ' ')
+        if (sentence[i] == ' ' && sentence[i - 1] != ' ')
             corrected_sentence += ' ';
 
-        // check if any character expict the first one is uppercase 
-        if (sentence[i] == toupper(sentence[i]))
+        // check if any character expict the first one is uppercase
+        if (sentence[i] == toupper(sentence[i]) && isalpha(sentence[i]))
             // make the character lowercase
             corrected_sentence += tolower(sentence[i]);
-        else
+        else if (sentence[i] != ' ')
             corrected_sentence += sentence[i];
-        
+
         // Check for the end of the sentence
         if (sentence[i] == '.')
             break;

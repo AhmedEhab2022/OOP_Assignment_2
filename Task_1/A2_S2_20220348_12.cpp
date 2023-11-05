@@ -3,7 +3,7 @@
 // Author: Mohanad Abdullrahem Abdullrahman Ahmed
 // Section: S2
 // ID: 20220348
-// TA: Maya Ahmed Kamal
+// TA: Khaled Ibrahem
 // Date: 26 Oct 2023
 
 #include <iostream>
@@ -92,7 +92,7 @@ int main()
       // loop through the massage and check for each word.
       for (int i = 0; i < msg_content.size(); i++)
       {
-        // if it exist we increase the occurrence and add the 
+        // if it exist we increase the occurrence and add the
         // word points to the total.
         if (word.content == msg_content.substr(i, word.content.size()))
         {

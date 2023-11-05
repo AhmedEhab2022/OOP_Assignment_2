@@ -3,7 +3,7 @@
 // Author: Ahmed Mohamed Amer Ahmed
 // Section: S1
 // ID: 20220034
-// TA: Maya Ahmed Kamal
+// TA: Khaled Ibrahem
 // Date: 27 Oct 2023
 
 #include <iostream>
@@ -96,8 +96,10 @@ void add_player(){
 
 //print top 10 scores
 void print_top_scores(){
+    int i = 0;
     for(auto prt = lis.begin() ; prt != lis.end(); prt++){
-        cout<< (*prt).second<<"   "<< (*prt).first<<'\n';
+         i++;
+        cout<< i << "-" <<(*prt).second<<"   "<< (*prt).first<<'\n';
     }
 }
 

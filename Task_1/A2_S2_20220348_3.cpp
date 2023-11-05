@@ -3,7 +3,7 @@
 // Author: Mohanad Abdullrahem Abdullrahman Ahmed
 // Section: S2
 // ID: 20220348
-// TA: Maya Ahmed Kamal
+// TA: Khaled Ibrahem
 // Date: 26 Oct 2023
 
 #include <iostream>
@@ -27,7 +27,7 @@ vector<string> split(string target, string delimiter)
 {
   if (delimiter == "")
     delimiter = " ";
-    
+
   vector<string> answer;
   string current_word = "", word_to_compare = "";
 

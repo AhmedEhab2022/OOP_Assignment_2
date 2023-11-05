@@ -1,0 +1,5 @@
+This file was designed to compare two files 
+either character by character
+or word by word, 
+and show the result
+whether they are identical or not.
