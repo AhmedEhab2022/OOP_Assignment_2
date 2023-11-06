@@ -78,7 +78,7 @@ int main()
     n9 = n1 + n3;
     cout << n9 << '\n';
     cout << "\n=====================\n";
-    n3 = n3 + BigReal (0.9);
+    // n3 = n3 + BigReal (0.9);
     cout << "\n=====================\n";
     n8 = n1;
     n8.setSign('-');
