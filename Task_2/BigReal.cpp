@@ -35,21 +35,6 @@ BigReal::BigReal(string realNumber)
   BigReal::setNum(realNumber);
 }
 
-BigReal::BigReal(const BigReal& other)
-{
-    sign = other.sign ;
-    integer = other.integer ;
-    fraction = other.fraction ;
-}
-
-BigReal &BigReal::operator=(BigReal &other)
-{
-    sign = other.sign;
-    integer = other.integer;
-    fraction = other.fraction;
-    return other;
-}
-
 void BigReal::setNum(string realNumber)
 {
   this->sign = '+';
@@ -123,65 +108,77 @@ char BigReal::getSign()
 
 BigReal BigReal::operator+(BigReal &other)
 {
-  string result, integer1, integer2, frac1, frac2;
-  int i, carry = 0;
-  char temp;
-
-  integer1 = this->integer;
-  integer2 = other.integer;
-  frac1 = this->fraction;
-  frac2 = other.fraction;
+  int i ;
+  BigReal result , second ;
+  // two BigReal to save values
+  result.sign = this ->sign;
+  result.integer = this->integer;
+  result.fraction = this->fraction;
+  second.sign = other.sign ;
+  second.integer = other.integer;
+  second.fraction = other.fraction;
   // Check the sign of two numbers
-  if (this->sign == other.getSign())
+  if (this->sign == other.sign)
   {
-    // Store the remaining digits of the fraction that
-    // has more number of digits in the result
-    if (frac1.size() > frac2.size())
-      result = frac1.substr(frac2.size(), frac1.size());
+    // add zero or more to make fractions the same size
+    if(result.fraction.size() > second.fraction.size())
+    {
+        while (result.fraction.size() != second.fraction.size())
+        second.fraction += '0';
+    }
 
-    else if (frac1.size() < frac2.size())
-      result = frac2.substr(frac1.size(), frac2.size());
+    if(result.fraction.size() < second.fraction.size())
+    {
+        while (result.fraction.size() != second.fraction.size())
+            result.fraction += '0';
+    }
 
     // Loop from the right to left and add the two digits with carry
-    for (i = min(frac1.size(), frac2.size()) - 1; i >= 0; i--)
+    for (i = result.fraction.size() - 1; i >= 0; i--)
     {
-      temp = carry + (frac1[i] + frac2[i] - '0');
-      if (temp > '9')
+      result.fraction[i] = (result.fraction[i] + second.fraction[i] - '0');
+      if (result.fraction[i] > '9')
       {
-        carry = 1;
-        temp -= 10;
+        result.fraction[i] -= 10;
+        if(i == 0)
+            result.integer[result.integer.size()-1] += 1;
+        else
+            result.fraction[i-1] += 1;
       }
       else
-        carry = 0;
-
-      result = temp + result;
+        continue ;
     }
-    result = '.' + result;
+
     // Pad the integer that has less number of digits to the right by zeros
-    while (integer1.size() > integer2.size())
-      integer2 = '0' + integer2;
+    if(result.integer.size() > second.integer.size())
+    {
+        while (result.integer.size() != second.integer.size())
+            second.integer = '0' + second.integer;
+    }
 
-    while (integer1.size() < integer2.size())
-      integer1 = '0' + integer1;
+    if(result.integer.size() < second.integer.size())
+    {
+        while (result.integer.size() != second.integer.size())
+            result.integer = '0' + result.integer;
+    }
 
     // Loop from the right to left and add the two digits with carry
-    for (i = integer1.size() - 1; i >= 0; i--)
+    for (i = result.integer.size() - 1; i >= 0; i--)
     {
-      temp = carry + (integer1[i] + integer2[i] - '0');
-      if (temp > '9')
+      result.integer[i] = (result.integer[i] + second.integer[i] - '0');
+      if (result.integer[i] > '9')
       {
-        carry = 1;
-        temp -= 10;
+        result.integer[i] -= 10;
+        if(i == 0)
+            result.integer = "1" + result.integer ;
+        else
+            result.integer[i-1] += 1;
       }
       else
-        carry = 0;
-
-      result = temp + result;
+        continue;
     }
-    // make a new big real object to return the result
-    BigReal new_BigReal(result);
-    new_BigReal.sign = this->sign;
-    return new_BigReal;
+    // return result
+    return result;
   }
    else if(this->sign != other.sign){
     BigReal s1 , s2;
