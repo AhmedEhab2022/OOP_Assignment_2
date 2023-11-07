@@ -38,7 +38,7 @@ public:
   ~Regeisters();
 
   string getValue(int address) {}
-  void storeValue(string data) {}
+  void storeValue(string data, int address) {}
 };
 
 class Memory
@@ -51,7 +51,7 @@ public:
   ~Memory();
 
   string readFromMemory(int address) {}           // return one byte
-  string getIstruction(int address) {}            // return two bytes
+  string getInstruction(int address) {}           // return two bytes
   void writeToMemory(string data, int address) {} // store one byte
 };
 
@@ -75,8 +75,8 @@ public:
   InstructionsRegester();
   ~InstructionsRegester();
 
-  bool validate(string instruction) {}         // to validate the instruction
-  void excuteIstruction(string instruction) {} // depending on the istruction it will call the right method
+  bool validate(string instruction) {}          // to validate the instruction
+  void excuteInstruction(string instruction) {} // depending on the istruction it will call the right method
 };
 
 class Screen
