@@ -37,6 +37,7 @@ int main()
     BigReal n8("-A12.999000000"); // invalid
     BigReal n9("-2.234");
     cout << "\n=====================\n";
+    cout << "Testing the getters:\n";
     cout << n1.getNum() << '\n';
     cout << "size: " << n1.getSize() << '\n';
     cout << n2.getNum() << '\n';
@@ -48,6 +49,7 @@ int main()
     cout << n8.getNum() << '\n';
     cout << "size: " << n8.getSize() << '\n';
     cout << "\n=====================\n";
+    cout << "Testing the less than sign:\n";
     cout << boolalpha;
     cout << (n1 < n2) << '\n'; // false
     cout << (n2 < n1) << '\n'; // true
@@ -56,6 +58,7 @@ int main()
     cout << (n2 < n3) << '\n'; // true
     cout << (n1 < n4) << '\n'; // false
     cout << "\n=====================\n";
+    cout << "Testing the greater than sign:\n";
     cout << (n1 > n2) << '\n'; // true
     cout << (n2 > n1) << '\n'; // false
     cout << (n1 > n3) << '\n'; // false
@@ -63,6 +66,7 @@ int main()
     cout << (n2 > n3) << '\n'; // false
     cout << (n1 > n4) << '\n'; // true
     cout << "\n=====================\n";
+    cout << "Testing the equality sign:\n";
     cout << (n1 == n2) << '\n'; // false
     cout << (n2 == n1) << '\n'; // false
     cout << (n1 == n3) << '\n'; // false
@@ -71,15 +75,18 @@ int main()
     cout << (n1 == n1) << '\n'; // true
     cout << (n1 == n6) << '\n'; // false
     cout << "\n=====================\n";
+    cout << "Testing the insertion operator:\n";
     cout << n1 << '\n' << n2 << '\n' << n3 << '\n';
     cout << "\n=====================\n";
     cout << n7 << '\n';
     cout << "\n=====================\n";
+    cout << "Testing the addition operator:\n";
     n9 = n1 + n3;
     cout << n9 << '\n';
     cout << "\n=====================\n";
     // n3 = n3 + BigReal (0.9);
     cout << "\n=====================\n";
+    cout << "Testing the assignment operator:\n";
     n8 = n1;
     n8.setSign('-');
     cout << n8 << '\n';
