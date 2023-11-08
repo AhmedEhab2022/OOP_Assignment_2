@@ -8,9 +8,11 @@ using namespace std;
 class Machine
 {
 private:
-  static string memo[256];
-  static string reg[16];
-  static int cp;
+  Memory memory;
+  Regeisters reg;
+  InstructionsRegester IR;
+  Screen screen;
+  static int pc;
 
 public:
   Machine();
@@ -18,40 +20,76 @@ public:
 
   int convertHexToDec(string hexNum) {}
   string convertDecToHex(int decNum) {}
+
+  void loadProgram(string fileName, int address) {}
+  void excuteProgram() {}
+  void displayStatus() {} // to display the memory, regester, and screen to the user
+  void displayMenu() {}   // to display menu options to the user
+  string fetch(int address /*PC value*/) {}
 };
 
-class InstructionsRegester : public Machine
+class Regeisters
 {
 private:
-  /* data */
+  static string reg[16];
+
 public:
-  InstructionsRegester();
-  ~InstructionsRegester();
+  Regeisters();
+  ~Regeisters();
+
+  string getValue(int address) {}
+  void storeValue(string data, int address) {}
 };
 
-class Regeister : public Machine
+class Memory
 {
 private:
-public:
-  Regeister();
-  ~Regeister();
-};
+  static string memo[256];
 
-class Memory : public Machine
-{
-private:
 public:
   Memory();
   ~Memory();
+
+  string readFromMemory(int address) {}           // return one byte
+  string getInstruction(int address) {}           // return two bytes
+  void writeToMemory(string data, int address) {} // store one byte
 };
 
-class Instructions : public Machine
+class Instructions
 {
 private:
   /* data */
 public:
   Instructions();
   ~Instructions();
+
+  // gonna have methods of all instruction
+  // and the instructionsRegester will inherit from it
+};
+
+class InstructionsRegester : public Instructions
+{
+private:
+  /* data */
+public:
+  InstructionsRegester();
+  ~InstructionsRegester();
+
+  bool validate(string instruction) {}          // to validate the instruction
+  void excuteInstruction(string instruction) {} // depending on the istruction it will call the right method
+};
+
+class Screen
+{
+private:
+  string screenBuffer;
+
+public:
+  Screen();
+  ~Screen();
+
+  void updateScreen(string data) {}
+  string getScreen() {}
 };
 
 #endif

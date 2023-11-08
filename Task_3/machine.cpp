@@ -17,11 +17,11 @@ InstructionsRegester::~InstructionsRegester()
 {
 }
 
-Regeister::Regeister()
+Regeisters::Regeisters()
 {
 }
 
-Regeister::~Regeister()
+Regeisters::~Regeisters()
 {
 }
 
@@ -38,5 +38,13 @@ Instructions::Instructions()
 }
 
 Instructions::~Instructions()
+{
+}
+
+Screen::Screen()
+{
+}
+
+Screen::~Screen()
 {
 }
