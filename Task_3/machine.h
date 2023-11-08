@@ -26,6 +26,7 @@ public:
   void displayStatus() {} // to display the memory, regester, and screen to the user
   void displayMenu() {}   // to display menu options to the user
   string fetch(int address /*PC value*/) {}
+  void increasePC() {} // increase PC value
 };
 
 class Regeisters
@@ -63,8 +64,29 @@ public:
   Instructions();
   ~Instructions();
 
-  // gonna have methods of all instruction
-  // and the instructionsRegester will inherit from it
+  // instruction 1
+  void loadFromMemory() {}
+
+  // instruction 2
+  void loadToRegester() {}
+
+  // instruction 3
+  void store() {}
+
+  // instruction 4
+  void move() {}
+
+  // instruction 5
+  void addTwoComp() {}
+
+  // instruction 6
+  void addFloat() {}
+
+  // instruction 7
+  void jump() {}
+
+  // instruction 8
+  void halt() {}
 };
 
 class InstructionsRegester : public Instructions
