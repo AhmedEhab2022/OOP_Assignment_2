@@ -18,8 +18,8 @@ public:
 
   array<string, 16> getRegeister();
 
-  string getValue(int address);
-  void storeValue(string data, int address);
+  string getValue(string address);
+  void storeValue(string data, string address);
 };
 
 class Memory
@@ -34,9 +34,9 @@ public:
 
   array<string, 256> getMemory();
 
-  string readFromMemory(int address);           // return one byte
-  string getInstruction(int address);           // return two bytes
-  void writeToMemory(string data, int address); // store one byte
+  string readFromMemory(string address);           // return one byte
+  string getInstruction(string address);           // return two bytes
+  void writeToMemory(string data, string address); // store one byte
 };
 
 class Instructions
@@ -81,7 +81,7 @@ public:
   ~InstructionsRegester();
 
   bool validate(string instruction);          // to validate the instruction
-  void excuteInstruction(string instruction); // depending on the istruction it will call the right method
+  void excuteInstruction(string instruction); // depending on the instruction it will call the right method
 };
 
 class Screen
@@ -113,11 +113,11 @@ public:
   int convertHexToDec(string hexNum);
   string convertDecToHex(int decNum);
 
-  void loadProgram(string fileName, int address);
+  void loadProgram(string fileName, string address);
   void excuteProgram();
   void displayStatus(); // to display the memory, regester, and screen to the user
   void displayMenu();   // to display menu options to the user
-  string fetch(int address /*PC value*/);
+  string fetch(string address /*PC value*/);
   void increasePC(); // increase PC value
 };
 
