@@ -97,5 +97,51 @@ void Machine::displayStatus()
   cout << this->screen.getScreen();
 
   cout << "\n\nProgram Counter\n";
-  cout << pc;
+  cout << pc << "\n\n";
+}
+
+void Machine::displayMenu()
+{
+  // 1- enter file name and address to store the program
+  // 2- store something in memory
+  // 3- exit the simulator
+  char cond;
+  string tempPC;
+
+  cout << "Welcome to the machine language simulator.\n";
+  cout << "You can always close the simulator by clicking (ctrl+c)\n";
+  cout << "Please enter the file name that contains the program:\n";
+  cin >> programFileName;
+  cout << "Please enter the address memory to store the program:\n";
+  cin >> tempPC;
+  // convert from hex string to dec int and store it in pc
+  // pc == this->convertHexToDec(tempPC);
+  cout << "Thank you!\n";
+
+  cout << "If you want to store something in the memory enter (s)\n";
+  cout << "If you want to initiate the simulator enter (c)\n";
+  cin >> cond;
+
+  if (cond == 's')
+  {
+    string data;
+
+    cout << "To store something in the memory enter the address followed by the data\n";
+    cout << "for example: 5A01 (the address is 5A and the value is 01)\n";
+    cout << "to exit the storing mood and start the simulator enter (e)\n";
+    while (true)
+    {
+      cin >> data;
+      if (data == "e")
+      {
+        return;
+      }
+      // store the data in memory
+      // this->memory.writeToMemory(data.substr(2), data.substr(0, 2));
+      cout << "Data saved successfully!\n";
+      cout << "to exit the storing mood and initiate the simulator enter (e)\n";
+      cout << "to store something else please enter it in the same format:\n";
+    }
+  }
+  return;
 }
