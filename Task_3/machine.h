@@ -112,8 +112,8 @@ public:
   Machine();
   ~Machine();
 
-  int convertHexToDec(string hexNum);
-  string convertDecToHex(int decNum);
+  static int convertHexToDec(string hexNum);
+  static string convertDecToHex(int decNum);
 
   void loadProgram(string fileName, string address);
   void excuteProgram();
