@@ -145,3 +145,44 @@ void Machine::displayMenu()
   }
   return;
 }
+
+int Machine::convertHexToDec(string hexNum)
+{
+  int decNum;
+
+  decNum = stoi(hexNum, 0, 16);
+  return decNum;
+}
+
+void Machine::loadProgram(string fileName, string address)
+{
+  ifstream instructionsFile(fileName);
+  string line;
+  int index;
+
+  index = convertHexToDec(address);
+  while (getline(instructionsFile, line))
+  {
+    // Store instructions to the memory line by line
+    this->memory.writeToMemory(line.substr(2, 2), convertDecToHex(index));
+    this->memory.writeToMemory(line.substr(7, 2), convertDecToHex(index + 1));
+    index += 2;
+  }
+  instructionsFile.close();
+}
+
+string Regeisters::getValue(string address)
+{
+  int index;
+
+  index = Machine::convertHexToDec(address);
+  return this->reg[index];
+}
+
+void Regeisters::storeValue(string data, string address)
+{
+  int index;
+
+  index = Machine::convertHexToDec(address);
+  this->reg[index] = data;
+}
