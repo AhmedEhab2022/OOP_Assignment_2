@@ -78,6 +78,11 @@ string Screen::getScreen()
   return screenBuffer;
 }
 
+void Screen::updateScreen(string data)
+{
+  this->screenBuffer = data;
+}
+
 void Machine::displayStatus()
 {
   array<string, 256> tmp = this->memory.getMemory();
