@@ -1,6 +1,7 @@
 #include "machine.h"
 #include <iostream>
 #include <array>
+#include <fstream>
 using namespace std;
 
 Machine::Machine()
