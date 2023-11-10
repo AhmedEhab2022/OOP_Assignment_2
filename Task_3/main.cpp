@@ -30,4 +30,5 @@ int main()
   Machine m;
   cout << "\n======================\n";
   m.displayStatus();
+  m.displayMenu();
 }

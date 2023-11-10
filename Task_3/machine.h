@@ -33,10 +33,11 @@ public:
   ~Memory();
 
   array<string, 256> getMemory();
+  
+  string readFromMemory(string address);                      // return one byte
+  string getInstruction(string address);                      // return two bytes
+  void writeToMemory(string data, string address) { return; } // store one byte
 
-  string readFromMemory(string address);           // return one byte
-  string getInstruction(string address);           // return two bytes
-  void writeToMemory(string data, string address); // store one byte
 };
 
 class Instructions
@@ -105,6 +106,7 @@ private:
   InstructionsRegester IR;
   Screen screen;
   int pc;
+  string programFileName;
 
 public:
   Machine();
