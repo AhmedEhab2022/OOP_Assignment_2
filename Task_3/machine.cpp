@@ -78,6 +78,11 @@ string Screen::getScreen()
   return screenBuffer;
 }
 
+void Screen::updateScreen(string data)
+{
+  this->screenBuffer = data;
+}
+
 void Machine::displayStatus()
 {
   array<string, 256> tmp = this->memory.getMemory();
@@ -187,3 +192,80 @@ void Regeisters::storeValue(string data, string address)
   index = Machine::convertHexToDec(address);
   this->reg[index] = data;
 }
+
+void Machine::excuteInstruction(string instruction)
+{
+  // this->validate(instruction); optional
+  switch (instruction[0])
+  {
+  case '1':
+    this->loadFromMemory(instruction);
+    break;
+  case '2':
+    this->loadToRegester(instruction);
+    break;
+  case '3':
+    this->store(instruction);
+    break;
+  case '4':
+    this->move(instruction);
+    break;
+  case '5':
+    this->addTwoComp(instruction);
+    break;
+  case '6':
+    this->addFloat(instruction);
+    break;
+  case 'B':
+    this->jump(instruction);
+    break;
+  case 'C':
+    this->halt(instruction);
+    break;
+  }
+}
+
+void Memory::writeToMemory(string data, string address)
+{
+  int decAddress = Machine::convertHexToDec(address);
+  this->memo[decAddress] = data;
+}
+
+// instruction 1
+void Machine::loadFromMemory(string instruction) {}
+
+// instruction 2
+void Machine::loadToRegester(string instruction) {}
+
+// instruction 3
+void Machine::store(string instruction)
+{
+  // Example: 35B1 would cause the contents of
+  // register 5 to be placed in the memory cell
+  // whose address is B1
+
+  // Retrieve the data from the regeister
+  string dataFromReg = this->reg.getValue(instruction.substr(1, 1));
+  // store the data in the memory cell
+  this->memory.writeToMemory(dataFromReg, instruction.substr(2, 2));
+}
+
+// instruction 4
+void Machine::move(string instruction) {}
+
+// instruction 5
+void Machine::addTwoComp(string instruction) {}
+
+// instruction 6
+void Machine::addFloat(string instruction)
+{
+  // Example: 634E would cause the values in
+  // registers 4 and E to be added as floating-point
+  // values and the result to be placed in register 3
+}
+
+// instruction 7
+void Machine::jump(string instruction) {}
+
+// instruction 8
+void Machine::halt(string instruction) {}
