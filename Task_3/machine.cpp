@@ -2,6 +2,7 @@
 #include <iostream>
 #include <array>
 #include <fstream>
+#include <cmath>
 using namespace std;
 
 Machine::Machine()
@@ -262,6 +263,18 @@ void Machine::addFloat(string instruction)
   // Example: 634E would cause the values in
   // registers 4 and E to be added as floating-point
   // values and the result to be placed in register 3
+
+  string firstNum = this->reg.getValue(instruction.substr(2, 1));
+  string secondNum = this->reg.getValue(instruction.substr(3, 1));
+
+  float floatFirstNum = this->convertHexToFloat(firstNum);
+  float floatSecondNum = this->convertHexToFloat(secondNum);
+
+  float result = floatFirstNum + floatSecondNum;
+
+  string hexResult = this->convertFloatToHex(result);
+
+  this->reg.storeValue(hexResult, instruction.substr(1, 1));
 }
 
 // instruction 7
@@ -269,3 +282,138 @@ void Machine::jump(string instruction) {}
 
 // instruction 8
 void Machine::halt(string instruction) {}
+
+string Machine::convertFloatToHex(float num)
+{
+  string number = to_string(num);
+  string result = "";
+
+  if (number[0] == '-')
+  {
+    result += '1';
+    number.erase(0, 1);
+  }
+  else
+  {
+    result += '0';
+  }
+
+  int intPart = static_cast<int>(num);
+
+  string binIntNum = "";
+
+  for (int i = 0; intPart != 0; i++)
+  {
+    if (intPart % 2 == 0)
+    {
+      binIntNum = "0" + binIntNum;
+    }
+    else
+    {
+      binIntNum = "1" + binIntNum;
+    }
+    intPart /= 2;
+  }
+
+  int exponent = binIntNum.size() + 4;
+
+  string exponentPart = "";
+  for (int i = 0; exponent != 0; i++)
+  {
+    if (exponent % 2 == 0)
+    {
+      exponentPart = "0" + exponentPart;
+    }
+    else
+    {
+      exponentPart = "1" + exponentPart;
+    }
+    exponent /= 2;
+  }
+
+  float fraction = abs(num - trunc(num));
+
+  string fractionPart = "";
+
+  for (int i = 0; i < 4; i++)
+  {
+    fraction *= 2;
+    if (static_cast<int>(fraction) == 1)
+    {
+      fractionPart += "1";
+    }
+    else
+    {
+      fractionPart += "0";
+    }
+    fraction -= 1;
+  }
+
+  result += exponentPart + binIntNum + fractionPart;
+
+  if (result.size() > 8)
+  {
+    result.erase(8);
+  }
+
+  int res = stoi(result, 0, 2);
+
+  // result = this->convertDecToHex(res);
+
+  return result;
+}
+
+float Machine::convertHexToFloat(string hexNum)
+{
+  string firstNum = hexNum;
+
+  int decFirstNum = stoi(firstNum, 0, 16);
+
+  string binFirstNum;
+  binFirstNum = "";
+
+  for (int i = 0; i < 8; i++)
+  {
+    if (decFirstNum % 2 == 0)
+    {
+      binFirstNum = "0" + binFirstNum;
+    }
+    else
+    {
+      binFirstNum = "1" + binFirstNum;
+    }
+    decFirstNum /= 2;
+  }
+
+  string floatFirstNum;
+  floatFirstNum = "";
+
+  if (binFirstNum[0] == '1')
+  {
+    floatFirstNum += "-";
+  }
+  else
+  {
+    floatFirstNum += "+";
+  }
+
+  int pointPos = stoi(binFirstNum.substr(1, 3), 0, 2) - 4;
+
+  int intPart = stoi(binFirstNum.substr(4, pointPos), 0, 2);
+
+  float fractionPart = 0.0;
+
+  for (int i = 1; i < (4 - pointPos) + 1; i++)
+  {
+    if (binFirstNum[i + 3 + pointPos] == '1')
+    {
+      fractionPart += 1.0 / (pow(2, i));
+    }
+  }
+
+  floatFirstNum += to_string(intPart) + to_string(fractionPart).erase(0, 1);
+
+  float finalFirstNum = stof(floatFirstNum);
+
+  return finalFirstNum;
+}
