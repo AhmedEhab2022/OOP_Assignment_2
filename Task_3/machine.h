@@ -114,6 +114,9 @@ public:
   static int convertHexToDec(string hexNum);
   static string convertDecToHex(int decNum);
 
+  float convertHexToFloat(string hexNum);
+  string convertFloatToHex(float num);
+
   void loadProgram(string fileName, string address);
   void excuteProgram();
   void displayStatus(); // to display the memory, regester, and screen to the user
