@@ -104,7 +104,7 @@ private:
   Regeisters reg;
   InstructionsRegester IR;
   Screen screen;
-  int pc;
+  string pc;
   string programFileName;
 
 public:

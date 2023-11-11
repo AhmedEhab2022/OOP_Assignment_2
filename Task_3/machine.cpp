@@ -6,7 +6,7 @@ using namespace std;
 
 Machine::Machine()
 {
-  pc = 0;
+  pc = "00";
 }
 Machine::~Machine()
 {
@@ -166,6 +166,7 @@ void Machine::loadProgram(string fileName, string address)
   string line;
   int index;
 
+  this->pc = address;
   index = convertHexToDec(address);
   while (getline(instructionsFile, line))
   {
@@ -232,7 +233,18 @@ void Memory::writeToMemory(string data, string address)
 }
 
 // instruction 1
-void Machine::loadFromMemory(string instruction) {}
+void Machine::loadFromMemory(string instruction)
+{
+  // Example: 14A3 would cause the contents of
+  // the memory cell located at address A3 to be placed in register 4.
+
+  string dataFromMem;
+
+  // Retrieve the data from the memory
+  dataFromMem = this->memory.readFromMemory(instruction.substr(2, 2));
+  // Store the data in the regeister
+  this->reg.storeValue(dataFromMem, instruction.substr(1, 1));
+}
 
 // instruction 2
 void Machine::loadToRegester(string instruction) {}
@@ -246,12 +258,23 @@ void Machine::store(string instruction)
 
   // Retrieve the data from the regeister
   string dataFromReg = this->reg.getValue(instruction.substr(1, 1));
-  // store the data in the memory cell
+  // Store the data in the memory cell
   this->memory.writeToMemory(dataFromReg, instruction.substr(2, 2));
 }
 
 // instruction 4
-void Machine::move(string instruction) {}
+void Machine::move(string instruction)
+{
+  // Example: 40A4 would cause the contents of
+  // register A to be copied into register 4.
+
+  string dataFromReg;
+
+  // Retrieve the data from the regeister
+  dataFromReg = this->reg.getValue(instruction.substr(2, 1));
+  // Store the data in another cell in regeister
+  this->reg.storeValue(dataFromReg, instruction.substr(3, 1));
+}
 
 // instruction 5
 void Machine::addTwoComp(string instruction) {}
@@ -265,7 +288,29 @@ void Machine::addFloat(string instruction)
 }
 
 // instruction 7
-void Machine::jump(string instruction) {}
+void Machine::jump(string instruction)
+{
+  // Example: B43C would first compare the contents of register 4 with the
+  // contents of register 0. If the two were equal, the pattern 3C would be placed
+  // in the program counter so that the next instruction executed would be the one
+  // located at that memory address. Otherwise, nothing would be done and program
+  // execution would continue in its normal sequence.
+
+  int decAddress;
+  string hexAddress;
+
+  // Check if the given regeister is equal to 0 regeister or not
+  if (this->reg.getValue(instruction.substr(1, 1)) == this->reg.getValue("0"))
+  {
+    // Get the decimal address from the given hex address
+    decAddress = this->convertHexToDec(instruction.substr(2, 2));
+    decAddress -= 2;
+    // Get the hex address that before 2 bytes from the given address 
+    hexAddress = this->convertDecToHex(decAddress);
+    // Store the hexAddress in program counter
+    this->pc = hexAddress;
+  }
+}
 
 // instruction 8
 void Machine::halt(string instruction) {}
