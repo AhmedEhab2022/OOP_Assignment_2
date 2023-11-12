@@ -137,6 +137,20 @@ void Machine::loadProgram(string fileName, string address)
   instructionsFile.close();
 }
 
+void Machine::excuteProgram()
+{
+    displayStatus();
+    displayMenu();
+    loadProgram(programFileName , pc);
+    while(instruction[0]!='C'){
+        instruction = memory.getInstruction(pc);
+        excuteInstruction(instruction);
+        increasePC();
+    }
+    increasePC();
+    displayStatus();
+}
+
 void Machine::excuteInstruction(string instruction)
 {
   // this->validate(instruction); optional
@@ -567,7 +581,7 @@ void Machine::increasePC()
   string hexAddress;
 
   // Get the decimal address from the given hex address
-  decAddress = this->convertHexToDec(instruction.substr(2, 2));
+  decAddress = this->convertHexToDec(pc);
   decAddress += 2;
   // Get the hex address that after 2 bytes from the given address
   hexAddress = this->convertDecToHex(decAddress);

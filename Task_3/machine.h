@@ -61,6 +61,7 @@ private:
   Screen screen;
   string pc;
   string programFileName;
+  string instruction;
 
 public:
   Machine();

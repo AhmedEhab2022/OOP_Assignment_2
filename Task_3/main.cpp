@@ -17,7 +17,7 @@
 // Section: S2
 // email : mhndahmd031@gmail.com
 
-// TA: Maya Ahmed Kamal
+// TA: Khaled Ibrahem
 
 // Purpose: ........
 
@@ -34,4 +34,5 @@ int main()
   cout << "\n======================\n";
   m.displayStatus();
   m.displayMenu();
+  m.excuteProgram();
 }
