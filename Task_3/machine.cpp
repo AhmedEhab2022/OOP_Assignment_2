@@ -91,32 +91,35 @@ int Machine::convertHexToDec(string hexNum)
 
 string Machine::convertDecToHex(int decNum)
 {
-    // string to save Hex number
-    string hexNum;
-    hexNum = "";
-    while (decNum != 0) {
-        // int variable to change into character
-        int reminder = 0;
-        // char variable to save each character in hexNum
-        char s;
-        // save the remainder in int variable.
-        reminder = decNum % 16;
-        // check if the reminder < 10
-        if (reminder < 10) {
-            // save an integer value as char
-            s = reminder + 48;
-        }
-        else {
-            //save a letter value as char
-            s = reminder + 55;
-        }
-        // adding every char to hexNum
-        hexNum += s;
-        decNum = decNum / 16;
+  // string to save Hex number
+  string hexNum;
+  hexNum = "";
+  while (decNum != 0)
+  {
+    // int variable to change into character
+    int reminder = 0;
+    // char variable to save each character in hexNum
+    char s;
+    // save the remainder in int variable.
+    reminder = decNum % 16;
+    // check if the reminder < 10
+    if (reminder < 10)
+    {
+      // save an integer value as char
+      s = reminder + 48;
     }
-    // reverse the hexNum to make it true
-    reverse(hexNum.begin() , hexNum.end());
-    return hexNum;
+    else
+    {
+      // save a letter value as char
+      s = reminder + 55;
+    }
+    // adding every char to hexNum
+    hexNum += s;
+    decNum = decNum / 16;
+  }
+  // reverse the hexNum to make it true
+  reverse(hexNum.begin(), hexNum.end());
+  return hexNum;
 }
 
 void Machine::loadProgram(string fileName, string address)
@@ -139,21 +142,21 @@ void Machine::loadProgram(string fileName, string address)
 
 void Machine::excuteProgram()
 {
-    displayStatus();
-    displayMenu();
-    loadProgram(programFileName , pc);
-    while(instruction[0]!='C'){
-        instruction = memory.getInstruction(pc);
-        excuteInstruction(instruction);
-        increasePC();
-    }
+  displayStatus();
+  displayMenu();
+  loadProgram(programFileName, pc);
+  while (instruction[0] != 'C')
+  {
+    instruction = memory.getInstruction(pc);
+    excuteInstruction(instruction);
     increasePC();
-    displayStatus();
+  }
+  screen.updateScreen(memory.readFromMemory("00"));
+  displayStatus();
 }
 
 void Machine::excuteInstruction(string instruction)
 {
-  // this->validate(instruction); optional
   switch (instruction[0])
   {
   case '1':
@@ -200,9 +203,9 @@ void Machine::loadFromMemory(string instruction)
 // instruction 2
 void Machine::loadToRegester(string instruction)
 {
-    string BitPattern;
-    BitPattern = instruction.substr(2, 2);
-    this->reg.storeValue(BitPattern, instruction.substr(1, 1));
+  string BitPattern;
+  BitPattern = instruction.substr(2, 2);
+  this->reg.storeValue(BitPattern, instruction.substr(1, 1));
 }
 
 // instruction 3
@@ -235,14 +238,14 @@ void Machine::move(string instruction)
 // instruction 5
 void Machine::addTwoComp(string instruction)
 {
-    string val1, val2 , result;
-    val1 = this->reg.getValue(instruction.substr(2, 1));
-    val2 = this->reg.getValue(instruction.substr(3, 1));
-    val1 =HexToBin(val1);
-    val2 =HexToBin(val2);
-    result = addingBin(val1 , val2);
-    result = BinToHex(result);
-    this->reg.storeValue(result, instruction.substr(1, 1));
+  string val1, val2, result;
+  val1 = this->reg.getValue(instruction.substr(2, 1));
+  val2 = this->reg.getValue(instruction.substr(3, 1));
+  val1 = HexToBin(val1);
+  val2 = HexToBin(val2);
+  result = addingBin(val1, val2);
+  result = BinToHex(result);
+  this->reg.storeValue(result, instruction.substr(1, 1));
 }
 
 // instruction 6
@@ -430,149 +433,173 @@ float Machine::convertHexToFloat(string hexNum)
 
 string Machine::HexToBin(string Hex)
 {
-    string bin = "";
-    for(int i=0 ; i<Hex.size() ; i++){
-        switch (Hex[i]) {
-        case '0':
-            bin += "0000";
-            break;
-        case '1':
-            bin += "0001";
-            break;
-        case '2':
-            bin += "0010";
-            break;
-        case '3':
-            bin += "0011";
-            break;
-        case '4':
-            bin += "0100";
-            break;
-        case '5':
-            bin += "0101";
-            break;
-        case '6':
-            bin += "0110";
-            break;
-        case '7':
-            bin += "0111";
-            break;
-        case '8':
-            bin += "1000";
-            break;
-        case '9':
-            bin += "1001";
-            break;
-        case 'a':
-        case 'A':
-            bin += "1010";
-            break;
-        case 'b':
-        case 'B':
-            bin += "1011";
-            break;
-        case 'c':
-        case 'C':
-            bin += "1100";
-            break;
-        case 'd':
-        case 'D':
-            bin += "1101";
-            break;
-        case 'e':
-        case 'E':
-            bin += "1110";
-            break;
-        case 'f':
-        case 'F':
-            bin += "1111";
-            break;
-        }
+  string bin = "";
+  for (int i = 0; i < Hex.size(); i++)
+  {
+    switch (Hex[i])
+    {
+    case '0':
+      bin += "0000";
+      break;
+    case '1':
+      bin += "0001";
+      break;
+    case '2':
+      bin += "0010";
+      break;
+    case '3':
+      bin += "0011";
+      break;
+    case '4':
+      bin += "0100";
+      break;
+    case '5':
+      bin += "0101";
+      break;
+    case '6':
+      bin += "0110";
+      break;
+    case '7':
+      bin += "0111";
+      break;
+    case '8':
+      bin += "1000";
+      break;
+    case '9':
+      bin += "1001";
+      break;
+    case 'a':
+    case 'A':
+      bin += "1010";
+      break;
+    case 'b':
+    case 'B':
+      bin += "1011";
+      break;
+    case 'c':
+    case 'C':
+      bin += "1100";
+      break;
+    case 'd':
+    case 'D':
+      bin += "1101";
+      break;
+    case 'e':
+    case 'E':
+      bin += "1110";
+      break;
+    case 'f':
+    case 'F':
+      bin += "1111";
+      break;
     }
-    return bin;
+  }
+  return bin;
 }
 
- string Machine::addingBin(string bin1 , string bin2)
- {
-     string result = "";
-     char carry = '0';
-     for(int i=bin1.size()-1 ; i>=0 ; i-- ){
-        if(bin1[i]+bin2[i]+carry-'0'-'0' == '1'){
-            result += "1";
-            carry = '0';
-        }
-     else if(bin1[i]+bin2[i]+carry-'0'-'0'== '2'){
-        result += "0";
-        carry ='1';
-     }
-     else if(bin1[i]+bin2[i]+carry-'0'-'0' == '3'){
-        result += "1";
-        carry ='1';
-        }
-        else if(bin1[i]+bin2[i]+carry-'0'-'0' == '0'){
-        result += "0";
-        carry ='0';
-        }
-    }
-    reverse(result.begin() , result.end());
-    return result;
- }
-
- string Machine::BinToHex(string Bin)
+string Machine::addingBin(string bin1, string bin2)
 {
-    string hex = "";
-    for(int i=0 ; i<Bin.size() ; i+=4){
-        string s=Bin.substr(i , 4);
-        if(s == "0000"){
-            hex += "0";
-        }
-        else if(s == "0001"){
-            hex += "1";
-        }
-        else if(s == "0010"){
-            hex += "2";
-        }
-        else if(s == "0011"){
-            hex += "3";
-        }
-        else if(s == "0100"){
-            hex += "4";
-        }
-        else if(s == "0101"){
-            hex += "5";
-        }
-        else if(s == "0110"){
-            hex += "6";
-        }
-        else if(s == "0111"){
-            hex += "7";
-        }
-        else if(s == "1000"){
-            hex += "8";
-        }
-        else if(s == "1001"){
-            hex += "9";
-        }
-        else if(s == "1010"){
-            hex += "A";
-        }
-        else if(s == "1011"){
-            hex += "B";
-        }
-        else if(s == "1100"){
-            hex += "C";
-        }
-        else if(s == "1101"){
-            hex += "D";
-        }
-        else if(s == "1110"){
-            hex += "E";
-        }
-        else if(s == "1111"){
-            hex += "F";
-        }
+  string result = "";
+  char carry = '0';
+  for (int i = bin1.size() - 1; i >= 0; i--)
+  {
+    if (bin1[i] + bin2[i] + carry - '0' - '0' == '1')
+    {
+      result += "1";
+      carry = '0';
     }
-    return hex;
+    else if (bin1[i] + bin2[i] + carry - '0' - '0' == '2')
+    {
+      result += "0";
+      carry = '1';
+    }
+    else if (bin1[i] + bin2[i] + carry - '0' - '0' == '3')
+    {
+      result += "1";
+      carry = '1';
+    }
+    else if (bin1[i] + bin2[i] + carry - '0' - '0' == '0')
+    {
+      result += "0";
+      carry = '0';
+    }
+  }
+  reverse(result.begin(), result.end());
+  return result;
+}
+
+string Machine::BinToHex(string Bin)
+{
+  string hex = "";
+  for (int i = 0; i < Bin.size(); i += 4)
+  {
+    string s = Bin.substr(i, 4);
+    if (s == "0000")
+    {
+      hex += "0";
+    }
+    else if (s == "0001")
+    {
+      hex += "1";
+    }
+    else if (s == "0010")
+    {
+      hex += "2";
+    }
+    else if (s == "0011")
+    {
+      hex += "3";
+    }
+    else if (s == "0100")
+    {
+      hex += "4";
+    }
+    else if (s == "0101")
+    {
+      hex += "5";
+    }
+    else if (s == "0110")
+    {
+      hex += "6";
+    }
+    else if (s == "0111")
+    {
+      hex += "7";
+    }
+    else if (s == "1000")
+    {
+      hex += "8";
+    }
+    else if (s == "1001")
+    {
+      hex += "9";
+    }
+    else if (s == "1010")
+    {
+      hex += "A";
+    }
+    else if (s == "1011")
+    {
+      hex += "B";
+    }
+    else if (s == "1100")
+    {
+      hex += "C";
+    }
+    else if (s == "1101")
+    {
+      hex += "D";
+    }
+    else if (s == "1110")
+    {
+      hex += "E";
+    }
+    else if (s == "1111")
+    {
+      hex += "F";
+    }
+  }
+  return hex;
 }
 
 void Machine::increasePC()
