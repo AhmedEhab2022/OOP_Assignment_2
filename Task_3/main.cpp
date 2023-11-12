@@ -1,5 +1,5 @@
 // FCAI – OOP Programming – 2023 - Assignment 1
-// Program Name: .......cpp
+// Program Name: main.cpp
 // Last Modification Date:	1/11/2023
 
 // Author1 : Ahmed Ehab Shehata Ali
@@ -17,9 +17,9 @@
 // Section: S2
 // email : mhndahmd031@gmail.com
 
-// TA: Maya Ahmed Kamal
+// TA: Khaled Ibrahem
 
-// Purpose: ........
+// Purpose: Simulator for the vole machine language.
 
 #include "machine.cpp"
 #include "screen.cpp"
@@ -32,6 +32,5 @@ int main()
 {
   Machine m;
   cout << "\n======================\n";
-  m.displayStatus();
-  m.displayMenu();
+  m.excuteProgram();
 }
