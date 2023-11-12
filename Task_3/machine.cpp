@@ -13,77 +13,6 @@ Machine::~Machine()
 {
 }
 
-InstructionsRegester::InstructionsRegester()
-{
-}
-
-InstructionsRegester::~InstructionsRegester()
-{
-}
-
-Regeisters::Regeisters()
-{
-  // reg[16] = {"00"};
-  for (int i = 0; i < 16; i++)
-  {
-    reg[i] = "00";
-  }
-}
-
-Regeisters::~Regeisters()
-{
-}
-
-Memory::Memory()
-{
-  // memo = {"00"};
-  for (int i = 0; i < 256; i++)
-  {
-    memo[i] = "00";
-  }
-}
-
-Memory::~Memory()
-{
-}
-
-Instructions::Instructions()
-{
-}
-
-Instructions::~Instructions()
-{
-}
-
-Screen::Screen()
-{
-  screenBuffer = "--";
-}
-
-Screen::~Screen()
-{
-}
-
-array<string, 256> Memory::getMemory()
-{
-  return memo;
-}
-
-array<string, 16> Regeisters::getRegeister()
-{
-  return reg;
-}
-
-string Screen::getScreen()
-{
-  return screenBuffer;
-}
-
-void Screen::updateScreen(string data)
-{
-  this->screenBuffer = data;
-}
-
 void Machine::displayStatus()
 {
   array<string, 256> tmp = this->memory.getMemory();
@@ -121,8 +50,7 @@ void Machine::displayMenu()
   cin >> programFileName;
   cout << "Please enter the address memory to store the program:\n";
   cin >> tempPC;
-  // convert from hex string to dec int and store it in pc
-  // pc == this->convertHexToDec(tempPC);
+  // this->pc = tempPC;
   cout << "Thank you!\n";
 
   cout << "If you want to store something in the memory enter (s)\n";
@@ -172,27 +100,11 @@ void Machine::loadProgram(string fileName, string address)
   while (getline(instructionsFile, line))
   {
     // Store instructions to the memory line by line
-    this->memory.writeToMemory(line.substr(2, 2), convertDecToHex(index));
-    this->memory.writeToMemory(line.substr(7, 2), convertDecToHex(index + 1));
+    // this->memory.writeToMemory(line.substr(2, 2), convertDecToHex(index));
+    // this->memory.writeToMemory(line.substr(7, 2), convertDecToHex(index + 1));
     index += 2;
   }
   instructionsFile.close();
-}
-
-string Regeisters::getValue(string address)
-{
-  int index;
-
-  index = Machine::convertHexToDec(address);
-  return this->reg[index];
-}
-
-void Regeisters::storeValue(string data, string address)
-{
-  int index;
-
-  index = Machine::convertHexToDec(address);
-  this->reg[index] = data;
 }
 
 void Machine::excuteInstruction(string instruction)
@@ -225,12 +137,6 @@ void Machine::excuteInstruction(string instruction)
     this->halt(instruction);
     break;
   }
-}
-
-void Memory::writeToMemory(string data, string address)
-{
-  int decAddress = Machine::convertHexToDec(address);
-  this->memo[decAddress] = data;
 }
 
 // instruction 1

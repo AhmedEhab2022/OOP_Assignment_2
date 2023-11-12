@@ -22,6 +22,9 @@
 // Purpose: ........
 
 #include "machine.cpp"
+#include "screen.cpp"
+#include "memory.cpp"
+#include "regeisters.cpp"
 #include <iostream>
 using namespace std;
 
