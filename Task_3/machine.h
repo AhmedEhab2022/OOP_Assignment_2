@@ -2,6 +2,7 @@
 #define MACHINE_H
 
 #include <iostream>
+#include <algorithm>
 #include <string>
 #include <array>
 using namespace std;
@@ -74,6 +75,9 @@ public:
 
   float convertHexToFloat(string hexNum);
   string convertFloatToHex(float num);
+  string HexToBin(string Hex);
+  string addingBin(string bin1 , string bin2);
+  string BinToHex(string Bin);
 
   void loadProgram(string fileName, string address);
   void excuteProgram();
