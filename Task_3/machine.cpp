@@ -50,7 +50,7 @@ void Machine::displayMenu()
   cin >> programFileName;
   cout << "Please enter the address memory to store the program:\n";
   cin >> tempPC;
-  // this->pc = tempPC;
+  this->pc = tempPC;
   cout << "Thank you!\n";
 
   cout << "If you want to store something in the memory enter (s)\n";
@@ -72,7 +72,7 @@ void Machine::displayMenu()
         return;
       }
       // store the data in memory
-      // this->memory.writeToMemory(data.substr(2), data.substr(0, 2));
+      this->memory.writeToMemory(data.substr(2), data.substr(0, 2));
       cout << "Data saved successfully!\n";
       cout << "to exit the storing mood and initiate the simulator enter (e)\n";
       cout << "to store something else please enter it in the same format:\n";
@@ -130,8 +130,8 @@ void Machine::loadProgram(string fileName, string address)
   while (getline(instructionsFile, line))
   {
     // Store instructions to the memory line by line
-    // this->memory.writeToMemory(line.substr(2, 2), convertDecToHex(index));
-    // this->memory.writeToMemory(line.substr(7, 2), convertDecToHex(index + 1));
+    this->memory.writeToMemory(line.substr(2, 2), convertDecToHex(index));
+    this->memory.writeToMemory(line.substr(7, 2), convertDecToHex(index + 1));
     index += 2;
   }
   instructionsFile.close();
@@ -559,4 +559,18 @@ string Machine::HexToBin(string Hex)
         }
     }
     return hex;
+}
+
+void Machine::increasePC()
+{
+  int decAddress;
+  string hexAddress;
+
+  // Get the decimal address from the given hex address
+  decAddress = this->convertHexToDec(instruction.substr(2, 2));
+  decAddress += 2;
+  // Get the hex address that after 2 bytes from the given address
+  hexAddress = this->convertDecToHex(decAddress);
+  // Store the hexAddress in program counter
+  this->pc = hexAddress;
 }

@@ -40,10 +40,6 @@ public:
   void writeToMemory(string data, string address); // store one byte
 };
 
-
-
-
-
 class Screen
 {
 private:
