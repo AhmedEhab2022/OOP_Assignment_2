@@ -94,28 +94,33 @@ string Machine::convertDecToHex(int decNum)
   // string to save Hex number
   string hexNum;
   hexNum = "";
-  while (decNum != 0)
-  {
-    // int variable to change into character
-    int reminder = 0;
-    // char variable to save each character in hexNum
-    char s;
-    // save the remainder in int variable.
-    reminder = decNum % 16;
-    // check if the reminder < 10
-    if (reminder < 10)
+  if(decNum == 0){
+    hexNum = "0";
+  }
+  else{
+    while (decNum != 0)
     {
-      // save an integer value as char
-      s = reminder + 48;
+        // int variable to change into character
+        int reminder = 0;
+        // char variable to save each character in hexNum
+        char s;
+        // save the remainder in int variable.
+        reminder = decNum % 16;
+        // check if the reminder < 10
+        if (reminder < 10)
+        {
+        // save an integer value as char
+        s = reminder + 48;
+        }
+        else
+        {
+        // save a letter value as char
+        s = reminder + 55;
+        }
+        // adding every char to hexNum
+        hexNum += s;
+        decNum = decNum / 16;
     }
-    else
-    {
-      // save a letter value as char
-      s = reminder + 55;
-    }
-    // adding every char to hexNum
-    hexNum += s;
-    decNum = decNum / 16;
   }
   // reverse the hexNum to make it true
   reverse(hexNum.begin(), hexNum.end());
