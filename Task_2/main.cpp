@@ -1,5 +1,5 @@
-// FCAI – OOP Programming – 2023 - Assignment 1
-// Program Name: .......cpp
+// FCAI – OOP Programming – 2023 - Assignment 2
+// Program Name: main.cpp
 // Last Modification Date:	1/11/2023
 
 // Author1 : Ahmed Ehab Shehata Ali
@@ -17,9 +17,9 @@
 // Section: S2
 // email : mhndahmd031@gmail.com
 
-// TA: Maya Ahmed Kamal
+// TA: Khaled Ibrahem
 
-// Purpose: ........
+// Purpose: create BigReal class as data type
 
 #include "BigReal.cpp"
 #include <iostream>
