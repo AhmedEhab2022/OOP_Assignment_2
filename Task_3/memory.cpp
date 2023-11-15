@@ -28,7 +28,7 @@ string Memory::getInstruction(string address)
 {
     // convert the string of address to integer to represent the index
     int decAddress = Machine::convertHexToDec(address);
-    // return the address and the value of the address
+    // return the value of the address and the value of the next address
     return this->memo[decAddress] + this->memo[decAddress+1];
 }
 

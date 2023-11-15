@@ -57,6 +57,15 @@ void Machine::displayMenu()
   cout << "You can always close the simulator by clicking (ctrl+c)\n";
   cout << "Please enter the file name that contains the program:\n";
   cin >> programFileName;
+  ifstream instructionsFile;
+  instructionsFile.open(programFileName);
+  while(instructionsFile.fail())
+  {
+     cout<<"The file you are trying to open does not exist.\n";
+     cout<<"Please try again with the correct name and extension :\n";
+     cin>>programFileName;
+     instructionsFile.open(programFileName);
+  }
   cout << "Please enter the address memory to store the program:\n";
   cin >> tempPC;
   this->pc = tempPC;
@@ -103,6 +112,7 @@ string Machine::convertDecToHex(int decNum)
   // string to save Hex number
   string hexNum;
   hexNum = "";
+  // if decNum = 0 make hexNum = 0
   if (decNum == 0)
   {
     hexNum = "0";
@@ -111,11 +121,11 @@ string Machine::convertDecToHex(int decNum)
   {
     while (decNum != 0)
     {
-      // int variable to change into character
+      // int variable to save the reminder of  the division
       int reminder = 0;
-      // char variable to save each character in hexNum
+      // char variable to save values in hexNum
       char s;
-      // save the remainder in int variable.
+      // save reminder of the division
       reminder = decNum % 16;
       // check if the reminder < 10
       if (reminder < 10)
@@ -130,6 +140,7 @@ string Machine::convertDecToHex(int decNum)
       }
       // adding every char to hexNum
       hexNum += s;
+      // divide the number over 16
       decNum = decNum / 16;
     }
   }
@@ -156,22 +167,30 @@ void Machine::loadProgram(string fileName, string address)
   instructionsFile.close();
 }
 
-void Machine::excuteProgram()
+void Machine::executeProgram()
 {
+  string instruction = "";
+  // display the status of the program
   displayStatus();
+  // display the menu for the user
   displayMenu();
+  // load the program from txt file
   loadProgram(programFileName, pc);
   while (instruction[0] != 'C')
   {
     instruction = memory.getInstruction(pc);
-    excuteInstruction(instruction);
+    // execute the instruction
+    executeInstruction(instruction);
+    // increase PC by 2
     increasePC();
   }
+  // show memory cell 0 on screen
   screen.updateScreen(memory.readFromMemory("00"));
+  // display the status of the program
   displayStatus();
 }
 
-void Machine::excuteInstruction(string instruction)
+void Machine::executeInstruction(string instruction)
 {
   switch (instruction[0])
   {
@@ -185,7 +204,7 @@ void Machine::excuteInstruction(string instruction)
     this->store(instruction);
     break;
   case '4':
-    this->move(instruction);
+    this->moveInstruction(instruction);
     break;
   case '5':
     this->addTwoComp(instruction);
@@ -195,9 +214,6 @@ void Machine::excuteInstruction(string instruction)
     break;
   case 'B':
     this->jump(instruction);
-    break;
-  case 'C':
-    this->halt(instruction);
     break;
   }
 }
@@ -219,6 +235,9 @@ void Machine::loadFromMemory(string instruction)
 // instruction 2
 void Machine::loadToRegester(string instruction)
 {
+  // Example: 23B6 would cause the contents of
+  // register 3 will be loaded with the bit pattern B6.
+
   string BitPattern;
   BitPattern = instruction.substr(2, 2);
   this->reg.storeValue(BitPattern, instruction.substr(1, 1));
@@ -238,7 +257,7 @@ void Machine::store(string instruction)
 }
 
 // instruction 4
-void Machine::move(string instruction)
+void Machine::moveInstruction(string instruction)
 {
   // Example: 40A4 would cause the contents of
   // register A to be copied into register 4.
@@ -254,6 +273,10 @@ void Machine::move(string instruction)
 // instruction 5
 void Machine::addTwoComp(string instruction)
 {
+  // Example: 5312 would cause the contents of
+  // register 3 will be loaded with the sum of bit patterns
+  // found in register 1 and 2
+
   string val1, val2, result;
   val1 = this->reg.getValue(instruction.substr(2, 1));
   val2 = this->reg.getValue(instruction.substr(3, 1));
@@ -308,9 +331,6 @@ void Machine::jump(string instruction)
     this->pc = hexAddress;
   }
 }
-
-// instruction 8
-void Machine::halt(string instruction) {}
 
 string Machine::convertFloatToHex(float num)
 {
@@ -449,9 +469,12 @@ float Machine::convertHexToFloat(string hexNum)
 
 string Machine::HexToBin(string Hex)
 {
+  // make a string to save the bin number
   string bin = "";
   for (int i = 0; i < Hex.size(); i++)
   {
+    // convert every index of hex number to the corresponding value
+    // in bin number.
     switch (Hex[i])
     {
     case '0':
@@ -515,10 +538,13 @@ string Machine::HexToBin(string Hex)
 
 string Machine::addingBin(string bin1, string bin2)
 {
+  // make string to save the result of addition operation.
   string result = "";
   char carry = '0';
   for (int i = bin1.size() - 1; i >= 0; i--)
   {
+    // add every index in bin1 with the same index in bin2
+    // with the carry of the previous addition if exist.
     if (bin1[i] + bin2[i] + carry - '0' - '0' == '1')
     {
       result += "1";
@@ -540,15 +566,19 @@ string Machine::addingBin(string bin1, string bin2)
       carry = '0';
     }
   }
+  // reverse the result to make it true.
   reverse(result.begin(), result.end());
   return result;
 }
 
 string Machine::BinToHex(string Bin)
 {
+  // make a string to convert bin to hex
   string hex = "";
   for (int i = 0; i < Bin.size(); i += 4)
   {
+    // the program take every 4 index and convert
+    // them into a hex.
     string s = Bin.substr(i, 4);
     if (s == "0000")
     {

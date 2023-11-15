@@ -61,7 +61,6 @@ private:
   Screen screen;
   string pc;
   string programFileName;
-  string instruction;
 
 public:
   Machine();
@@ -77,12 +76,12 @@ public:
   string BinToHex(string Bin);
 
   void loadProgram(string fileName, string address);
-  void excuteProgram();
+  void executeProgram();
   void displayStatus(); // to display the memory, regester, and screen to the user
   void displayMenu();   // to display menu options to the user
   void increasePC(); // increase PC value
 
-  void excuteInstruction(string instruction); // depending on the instruction it will call the right method
+  void executeInstruction(string instruction); // depending on the instruction it will call the right method
 
   // instruction 1
   void loadFromMemory(string instruction);
@@ -94,7 +93,7 @@ public:
   void store(string instruction);
 
   // instruction 4
-  void move(string instruction);
+  void moveInstruction(string instruction);
 
   // instruction 5
   void addTwoComp(string instruction);
@@ -105,8 +104,6 @@ public:
   // instruction 7
   void jump(string instruction);
 
-  // instruction 8
-  void halt(string instruction);
 };
 
 #endif
