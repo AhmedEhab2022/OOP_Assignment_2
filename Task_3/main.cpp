@@ -1,4 +1,4 @@
-// FCAI – OOP Programming – 2023 - Assignment 1
+// FCAI – OOP Programming – 2023 - Assignment 2
 // Program Name: main.cpp
 // Last Modification Date:	15/11/2023
 
