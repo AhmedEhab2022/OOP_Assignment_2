@@ -26,18 +26,22 @@ int main(){
     cin>>name1;
     file1.open(name1);
     // check if the first file will open successfully
-    if ( file1.fail() ){
+    while ( file1.fail() ){
         cout << "Error can't open the file ,please check the name and extension and try again\n";
-        return 0;
+         cout << "Please enter the correct first file name :";
+        cin >> name1;
+        file1.open(name1);
     }
     // take second file name from the user and open it
     cout<<"\nPlease enter second file name :";
     cin>>name2;
     file2.open(name2);
     // check if the second file will open successfully
-     if ( file2.fail() ){
+     while ( file2.fail() ){
         cout << "Error can't open the file ,please check the name and extension and try again\n";
-        return 0;
+        cout << "Please enter the correct second file name :";
+        cin >> name2;
+        file2.open(name2);
     }
     // the message to make the user select comparison way
     cout<<"\nPlease select the way you want to comparison.";
