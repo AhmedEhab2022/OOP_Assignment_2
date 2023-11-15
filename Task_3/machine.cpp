@@ -3,6 +3,7 @@
 #include <array>
 #include <fstream>
 #include <cmath>
+#include <iomanip>
 using namespace std;
 
 Machine::Machine()
@@ -19,14 +20,22 @@ void Machine::displayStatus()
   cout << "Memory\n";
   for (int i = 0; i < 256; i++)
   {
-    cout << hex << i << " : " << tmp[i] << '\n';
+    cout << setw(2) << right << hex << i << " : " << tmp[i] << " | ";
+    if ((i + 1) % 8 == 0)
+    {
+      cout << '\n';
+    }
   }
 
   array<string, 16> tmp2 = this->reg.getRegeister();
   cout << "\nRegeisters\n";
   for (int i = 0; i < 16; i++)
   {
-    cout << i << " : " << tmp2[i] << '\n';
+    cout << i << " : " << tmp2[i] << " | ";
+    if ((i + 1) % 8 == 0)
+    {
+      cout << '\n';
+    }
   }
 
   cout << "\nScreen\n";
@@ -94,32 +103,34 @@ string Machine::convertDecToHex(int decNum)
   // string to save Hex number
   string hexNum;
   hexNum = "";
-  if(decNum == 0){
+  if (decNum == 0)
+  {
     hexNum = "0";
   }
-  else{
+  else
+  {
     while (decNum != 0)
     {
-        // int variable to change into character
-        int reminder = 0;
-        // char variable to save each character in hexNum
-        char s;
-        // save the remainder in int variable.
-        reminder = decNum % 16;
-        // check if the reminder < 10
-        if (reminder < 10)
-        {
+      // int variable to change into character
+      int reminder = 0;
+      // char variable to save each character in hexNum
+      char s;
+      // save the remainder in int variable.
+      reminder = decNum % 16;
+      // check if the reminder < 10
+      if (reminder < 10)
+      {
         // save an integer value as char
         s = reminder + 48;
-        }
-        else
-        {
+      }
+      else
+      {
         // save a letter value as char
         s = reminder + 55;
-        }
-        // adding every char to hexNum
-        hexNum += s;
-        decNum = decNum / 16;
+      }
+      // adding every char to hexNum
+      hexNum += s;
+      decNum = decNum / 16;
     }
   }
   // reverse the hexNum to make it true
