@@ -32,5 +32,5 @@ int main()
 {
   Machine m;
   cout << "\n======================\n";
-  m.excuteProgram();
+  m.executeProgram();
 }
