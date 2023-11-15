@@ -80,7 +80,6 @@ public:
   void excuteProgram();
   void displayStatus(); // to display the memory, regester, and screen to the user
   void displayMenu();   // to display menu options to the user
-  string fetch(string address /*PC value*/);
   void increasePC(); // increase PC value
 
   void excuteInstruction(string instruction); // depending on the instruction it will call the right method
